@@ -1,4 +1,4 @@
-#Tic Tac Toe Game
+# Tic Tac Toe Game
 
 [![Build Status](https://travis-ci.org/grace000/tic-tac-toe-pt-one.svg?branch=master)](https://travis-ci.org/grace000/tic-tac-toe-pt-one)
 
