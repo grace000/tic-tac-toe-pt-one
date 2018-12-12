@@ -1,5 +1,7 @@
 class TicTacToeRules
     def winner?(player_stats)
+        player_stats = player_stats.sort()
+        
         winning_combos = [
             [0,1,2],
             [3,4,5],
