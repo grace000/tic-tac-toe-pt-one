@@ -1,7 +1,7 @@
 class TicTacToeRules
     def winner?(player_stats)
         player_stats = player_stats.sort()
-        
+        match_box = []
         winning_combos = [
             [0,1,2],
             [3,4,5],
@@ -14,7 +14,13 @@ class TicTacToeRules
         ]
 
         winning_combos.map do |combo|
-            return true if player_stats == combo
+            match_box = []
+            player_stats.map do |stat|
+                if combo.include?(stat)
+                    match_box << stat
+                end
+            end
+            return true if match_box.length == 3
         end
     end
 end
