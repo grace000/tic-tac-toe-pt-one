@@ -51,9 +51,32 @@ describe TicTacToeRules do
             result = TicTacToeRules.new()
 
             expect(result.winner?([0,4])).to eq(false)
+            expect(result.winner?([0])).to eq(false)
+        end
+    end 
+    
+    describe "#draw?" do
+        it "should return false if a set of markings does not contain at least 4 marks" do
+            result = TicTacToeRules.new()
+
+            expect(result.draw?([0])).to eq(false)
+            expect(result.draw?([0,4])).to eq(false)
+            expect(result.draw?([0,4,3])).to eq(false)
         end
 
+        it "should return false if a set of markings contain a winning combo" do
+            result = TicTacToeRules.new()
 
-    end  
+            expect(result.draw?([0,2,4,6])).to eq(false)
+            expect(result.draw?([7,6,3,0])).to eq(false)
+        end
+
+        it "should return true if a set of markings does not contain a winning combo" do
+            result = TicTacToeRules.new()
+
+            expect(result.draw?([0,5,4,6])).to eq(true)
+            expect(result.draw?([1,5,8,6])).to eq(true)
+        end
+    end 
     
 end

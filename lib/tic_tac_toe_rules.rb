@@ -1,6 +1,10 @@
 class TicTacToeRules
     def winner?(player_stats)
         return false if player_stats.length <= 2 
+        evaluate_player_stats(player_stats)
+    end
+
+    def evaluate_player_stats(player_stats)
         player_stats = player_stats.sort()
         match_box = []
 
@@ -13,6 +17,7 @@ class TicTacToeRules
             end
             return true if match_box.length == 3
         end
+        false
     end
 
     def winning_combos
@@ -26,5 +31,10 @@ class TicTacToeRules
             [0,4,8],
             [2,4,6]
         ]
+    end
+
+    def draw?(player_stats)
+        return false unless player_stats.length == 4
+        evaluate_player_stats(player_stats) == false
     end
 end
