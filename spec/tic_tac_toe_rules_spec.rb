@@ -2,11 +2,11 @@ require "tic_tac_toe_rules"
 
 describe TicTacToeRules do
     describe "#winner?" do
-        it "should return true if a set of player markings STRAIGHT--match a winning combo" do
+        it "should return true if a set of markings STRAIGHT--match a winning combo" do
             result = TicTacToeRules.new()
 
-            player_stats = [0,1,2]
-            call = result.winner?(player_stats)
+            moves = [0,1,2]
+            call = result.winner?(moves)
             expect(call).to eq(true)
         end
 
@@ -23,8 +23,8 @@ describe TicTacToeRules do
         it "should return true if a set of markings BOX-match a winning combo" do
             result = TicTacToeRules.new()
 
-            player_stats = [7,6,8]
-            call = result.winner?(player_stats)
+            moves = [7,6,8]
+            call = result.winner?(moves)
             expect(call).to eq(true)
         end
 

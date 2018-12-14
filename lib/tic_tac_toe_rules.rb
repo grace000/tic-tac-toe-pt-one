@@ -1,17 +1,13 @@
 class TicTacToeRules
-    def winner?(player_stats)
-        return false if player_stats.length <= 2 
-        evaluate_player_stats(player_stats)
-    end
-
-    def evaluate_player_stats(player_stats)
+    def winner?(moves)
+        return false if moves.length <= 2 
         match_box = []
 
         winning_combos.map do |combo|
             match_box = []
-            player_stats.map do |stat|
-                if combo.include?(stat)
-                    match_box << stat
+            moves.map do |move|
+                if combo.include?(move)
+                    match_box << move
                 end
             end
             return true if match_box.length == 3
@@ -32,8 +28,20 @@ class TicTacToeRules
         ]
     end
 
-    def draw?(player_stats)
-        return false unless player_stats.length == 4
-        evaluate_player_stats(player_stats) == false
+    def draw?(moves)
+        return false unless moves.length == 4
+        match_box = []
+
+        winning_combos.map do |combo|
+            match_box = []
+            moves.map do |move|
+                if combo.include?(move)
+                    match_box << move
+                end
+            end
+            return false if match_box.length == 3
+        end
+        true
     end
 end
+
