@@ -5,7 +5,6 @@ class TicTacToeRules
     end
 
     def evaluate_player_stats(player_stats)
-        player_stats = player_stats.sort()
         match_box = []
 
         winning_combos.map do |combo|
