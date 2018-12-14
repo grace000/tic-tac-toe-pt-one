@@ -15,19 +15,6 @@ class TicTacToeRules
         false
     end
 
-    def winning_combos
-        [
-            [0,1,2],
-            [3,4,5],
-            [6,7,8],
-            [0,3,6],
-            [1,4,7],
-            [2,5,8],
-            [0,4,8],
-            [2,4,6]
-        ]
-    end
-
     def draw?(moves)
         return false unless moves.length == 4
         match_box = []
@@ -43,5 +30,20 @@ class TicTacToeRules
         end
         true
     end
+
+    private 
+
+        def winning_combos
+            [
+                [0,1,2],
+                [3,4,5],
+                [6,7,8],
+                [0,3,6],
+                [1,4,7],
+                [2,5,8],
+                [0,4,8],
+                [2,4,6]
+            ]
+        end
 end
 
