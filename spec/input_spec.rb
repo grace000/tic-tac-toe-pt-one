@@ -22,5 +22,14 @@ describe Input do
 
             expect(@input.get_input).to eq('1')
         end
+
+        it "returns a different input from command line" do
+            string_io = StringIO.new
+            string_io.puts '2'
+            string_io.rewind
+            $stdin = string_io
+
+            expect(@input.get_input).to eq('2')
+        end
     end
 end

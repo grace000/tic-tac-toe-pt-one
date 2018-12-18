@@ -4,6 +4,6 @@ class Input
     end
 
     def get_input
-        "1"
+        $stdin.gets.chomp
     end
 end
