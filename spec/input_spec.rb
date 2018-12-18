@@ -14,6 +14,10 @@ describe Input do
     end
     
     describe "#get_input" do 
+        after do
+            $stdin = STDIN
+        end
+
         it "returns input from command line" do
             string_io = StringIO.new
             string_io.puts '1'
