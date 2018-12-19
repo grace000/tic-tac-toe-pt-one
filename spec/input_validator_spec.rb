@@ -1,8 +1,11 @@
 require "input_validator"
 
 describe InputValidator do
-    describe "#valid_character" do
+    describe "#valid_character?" do
         it "should return true for X and O characters" do
+            input_v = InputValidator.new
+
+            
         end     
     end
 end
