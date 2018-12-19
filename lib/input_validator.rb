@@ -6,4 +6,8 @@ class InputValidator
         end
         true
     end
+
+    def valid_move?(move)
+        false
+    end
 end
