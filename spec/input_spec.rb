@@ -5,13 +5,6 @@ describe Input do
     before(:each) do
         @input = Input.new
     end
-
-    describe "#prompt_input" do
-        it "asks for input" do
-            input_request = "Please make a selection"
-            expect(@input.prompt_input).to eq(input_request)
-        end
-    end
     
     describe "#get_input" do 
         after do
