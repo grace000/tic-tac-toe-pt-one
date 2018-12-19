@@ -7,7 +7,7 @@ class InputValidator
         true
     end
 
-    def valid_move?(move)
+    def valid_move?(move, board)
         false
     end
 end

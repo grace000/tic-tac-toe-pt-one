@@ -28,7 +28,7 @@ describe InputValidator do
 
             board.move(2)
 
-            expect(@input_v.valid_move?(2)).to eq(false)
+            expect(@input_v.valid_move?(2, board)).to eq(false)
         end
     end
 end
