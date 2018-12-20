@@ -23,24 +23,36 @@ describe InputValidator do
     end
 
     describe "#get_invalid_moves" do
-        xit "should list all positions that have previously been requested" do
+        it "should list all positions that have previously been requested" do
             board = Board.new
 
             board.move(2)
             board.move(3)
             invalid_moves = [2,3]
 
-            expect(@input_v.get_invalid_moves).to eq(invalid_moves)
+            expect(@input_v.get_invalid_moves(board)).to eq(invalid_moves)
+        end
+
+        it "should list all positions that have previously been requested" do
+            board = Board.new
+
+            board.move(2)
+            board.move(3)
+            board.move(1)
+            board.move(4)
+            invalid_moves = [2,3,1,4]
+
+            expect(@input_v.get_invalid_moves(board)).to eq(invalid_moves)
         end
     end
 
     describe "#valid_move?" do
-        xit "should return false if requested move is already in the board's moves array" do
+        it "should return false if requested move is already in the board's moves array" do
             board = Board.new
 
             board.move(2)
-
-            expect(@input_v.valid_move?(2, board)).to eq(false)
+            @input_v.get_invalid_moves(board)
+            expect(@input_v.valid_move?(2)).to eq(false)
         end
     end
 end

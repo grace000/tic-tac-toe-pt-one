@@ -13,11 +13,13 @@ class InputValidator
         true
     end
 
-    def get_invalid_moves
-        @invalid_moves << moves
+    def get_invalid_moves(board)
+        board.moves.each do |i|
+            @invalid_moves << i 
+        end
     end
 
-    def valid_move?(move, board)
-        return false if board.include?(move)
+    def valid_move?(move)
+        !@invalid_moves.include?(move)
     end
 end
