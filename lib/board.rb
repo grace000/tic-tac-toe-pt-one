@@ -20,16 +20,10 @@ class Board
         @moves << position
     end
 
-    def available_spaces(state)
-    end
-
     private
 
     def horizontal_bar
         "\n--------------------------\n"
-    end
-
-    def state
     end
 
 end
