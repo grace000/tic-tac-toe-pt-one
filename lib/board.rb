@@ -20,15 +20,16 @@ class Board
         @moves << position
     end
 
+    def available_spaces(state)
+    end
+
     private
 
     def horizontal_bar
         "\n--------------------------\n"
     end
 
-end
+    def state
+    end
 
-board = Board.new
-board.move(1)
-board.move(3)
-puts board.display
+end
