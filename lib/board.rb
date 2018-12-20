@@ -1,5 +1,8 @@
 
 class Board
+  
+    attr_accessor :moves
+  
     def display
         "    1    |  2   |   3   #{horizontal_bar}    4    |  5   |   6   #{horizontal_bar}    7    |  8   |   9  \n"
     end
@@ -9,15 +12,15 @@ class Board
     end
     
     def empty?
-        @moves.length == 0
+        moves.length == 0
     end
 
     def full?
-        @moves.length == 9
+        moves.length == 9
     end
 
     def move(position)
-        @moves << position
+        self.moves << position
     end
 
     private
