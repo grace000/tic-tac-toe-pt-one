@@ -7,18 +7,18 @@ describe InputValidator do
         @input_v = InputValidator.new
     end
 
-    describe "#valid_character?" do
+    describe "#valid_coordinate?" do
         it "should return true for integers 1 through 9" do
 
-            expect(@input_v.valid_character?(2)).to eq(true)
-            expect(@input_v.valid_character?(5)).to eq(true)
+            expect(@input_v.valid_coordinate?(2)).to eq(true)
+            expect(@input_v.valid_coordinate?(5)).to eq(true)
         end
         it "should return false for any characters besides integers 1-9" do
 
-            expect(@input_v.valid_character?(0)).to eq(false)
-            expect(@input_v.valid_character?("k")).to eq(false)
-            expect(@input_v.valid_character?("+")).to eq(false)
-            expect(@input_v.valid_character?("/")).to eq(false)
+            expect(@input_v.valid_coordinate?(0)).to eq(false)
+            expect(@input_v.valid_coordinate?("k")).to eq(false)
+            expect(@input_v.valid_coordinate?("+")).to eq(false)
+            expect(@input_v.valid_coordinate?("/")).to eq(false)
         end      
     end
 
@@ -53,6 +53,40 @@ describe InputValidator do
             board.move(2)
             @input_v.get_invalid_moves(board)
             expect(@input_v.valid_move?(2)).to eq(false)
+        end
+
+        it "should return false if requested move is already in the board's moves array" do
+            board = Board.new
+
+            board.move(2)
+            board.move(3)
+            board.move(1)
+            board.move(4)
+            @input_v.get_invalid_moves(board)
+            expect(@input_v.valid_move?(2)).to eq(false)
+            expect(@input_v.valid_move?(1)).to eq(false)
+            expect(@input_v.valid_move?(1)).to eq(false)
+            expect(@input_v.valid_move?(4)).to eq(false)
+        end
+
+        it "should return true if requested move is not in the board's moves array" do
+            board = Board.new
+
+            board.move(1)
+            @input_v.get_invalid_moves(board)
+            expect(@input_v.valid_move?(3)).to eq(true)
+        end
+
+        it "should return true if requested moves are not in the board's moves array" do
+            board = Board.new
+
+            board.move(1)
+            board.move(4)
+            board.move(8)
+            @input_v.get_invalid_moves(board)
+            expect(@input_v.valid_move?(2)).to eq(true)
+            expect(@input_v.valid_move?(3)).to eq(true)
+            expect(@input_v.valid_move?(5)).to eq(true)
         end
     end
 end
