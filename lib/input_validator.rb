@@ -20,4 +20,8 @@ class InputValidator
     def valid_move?(move)
         !@invalid_moves.include?(move)
     end
+
+    def valid_token?(token)
+        token == "X" || token == "O"
+    end
 end
