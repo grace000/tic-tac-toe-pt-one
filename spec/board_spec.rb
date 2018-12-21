@@ -5,22 +5,6 @@ describe Board do
         @board = Board.new
     end
 
-    describe "#display" do 
-        it "should display a board with no player marks" do
-        
-            expect(@board.display).to eq(
-                <<~HEREDOC
-                    1    |  2   |   3   
-                --------------------------
-                    4    |  5   |   6   
-                --------------------------
-                    7    |  8   |   9  
-                HEREDOC
-            )
-        end
-    
-    end
-
     describe "#empty?" do
         it "returns true if a new board is initialized" do 
 
