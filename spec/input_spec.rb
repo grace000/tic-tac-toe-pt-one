@@ -28,5 +28,14 @@ describe Input do
 
             expect(@input.get_input).to eq('2')
         end
+
+        it "returns capitalized input from command line" do
+            string_io = StringIO.new
+            string_io.puts 'l'
+            string_io.rewind
+            $stdin = string_io
+
+            expect(@input.get_input).to eq('L')
+        end
     end
 end
