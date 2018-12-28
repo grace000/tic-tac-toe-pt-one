@@ -1,6 +1,5 @@
 require_relative './input'
 require_relative './prompt'
-require_relative './game_engine'
 
 def prompt_players
     puts Prompt::WELCOME
