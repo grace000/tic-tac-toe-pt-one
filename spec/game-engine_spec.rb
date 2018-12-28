@@ -5,7 +5,6 @@ describe GameEngine do
         @game = GameEngine.new
     end
 
-    describe "#start" do
-        
+    describe "#run_game" do
     end
 end
