@@ -1,5 +1,6 @@
 require_relative './input'
 require_relative './prompt'
+require_relative './game_engine'
 
 def prompt_players
     puts Prompt::WELCOME
@@ -18,8 +19,3 @@ def get_player_token
     input = Input.new
     player_token = input.get_input
 end
-
-prompt_players
-get_players
-prompt_token_selection
-get_player_token
