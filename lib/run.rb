@@ -6,8 +6,7 @@ def prompt_players
 end
 
 def get_players
-    input = Input.new
-    players = input.get_input
+    input = Input.new.get_input
 end
 
 def prompt_token_selection
@@ -15,6 +14,5 @@ def prompt_token_selection
 end
 
 def get_player_token
-    input = Input.new
-    player_token = input.get_input
+    input = Input.new.get_input
 end
