@@ -89,4 +89,19 @@ describe InputValidator do
             expect(@input_v.valid_move?(5)).to eq(true)
         end
     end
+
+    describe "#valid_token?" do
+        it "should return false if token is not X or O" do
+            
+            expect(@input_v.valid_token?("P")).to eq(false)
+            expect(@input_v.valid_token?("3")).to eq(false)
+            expect(@input_v.valid_token?("M")).to eq(false)
+        end
+
+        it "should return true if token is X or O" do
+            
+            expect(@input_v.valid_token?("X")).to eq(true)
+            expect(@input_v.valid_token?("O")).to eq(true)
+        end
+    end
 end
