@@ -23,7 +23,7 @@ def display_board
 end
 
 def assign_token(taken_token)
-    taken_token == "X" ? "O" : "X"
+    taken_token == 'X' ? "O" : "X"
 end
 
 def run
