@@ -1,5 +1,6 @@
 require_relative './input'
 require_relative './prompt'
+require_relative './board_presenter'
 
 def prompt_players
     puts Prompt::WELCOME
@@ -15,4 +16,12 @@ end
 
 def get_player_token
     input = Input.new.get_input
+end
+
+def display_board
+    board = BoardPresenter.new.display_board
+end
+
+def assign_token
+    get_player_token == "X" ? "O": "X"
 end
