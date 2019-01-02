@@ -22,7 +22,17 @@ def display_board
     BoardPresenter.new.display_board
 end
 
-def assign_token
-    get_player_token == "X" ? "O": "X"
+def assign_token(taken_token)
+    taken_token == "X" ? "O" : "X"
 end
 
+def run
+    prompt_players
+    get_players
+    prompt_token_selection
+    selected_token = get_player_token
+    puts "Thanks for selecting #{selected_token}. Player 2 will use #{assign_token(selected_token)}" 
+    puts display_board
+end
+
+run

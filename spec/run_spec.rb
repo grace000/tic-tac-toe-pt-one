@@ -51,21 +51,21 @@ describe "#assign_token" do
         $stdin = STDIN
     end
 
-    it "assigns the second player with a token" do
+    it "assigns the second player with a token O when X is taken" do
         string_io = StringIO.new
         string_io.puts 'X'
         string_io.rewind
         $stdin = string_io
 
-        expect(assign_token).to eq('O')
+        expect(assign_token($stdin)).to eq('O')
     end
 
-    it "assigns the second player with a token" do
+    it "assigns the second player with a token X when O is taken" do
         string_io = StringIO.new
         string_io.puts 'O'
         string_io.rewind
         $stdin = string_io
 
-        expect(assign_token).to eq('X')
+        expect(assign_token($stdin)).to eq('X')
     end
 end
