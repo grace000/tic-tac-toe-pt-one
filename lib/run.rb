@@ -19,9 +19,10 @@ def get_player_token
 end
 
 def display_board
-    board = BoardPresenter.new.display_board
+    BoardPresenter.new.display_board
 end
 
 def assign_token
     get_player_token == "X" ? "O": "X"
 end
+
