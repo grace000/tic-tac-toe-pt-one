@@ -7,7 +7,7 @@ def prompt_players
 end
 
 def get_players
-    input = Input.new.get_input
+    Input.new.get_input
 end
 
 def prompt_token_selection
@@ -15,7 +15,7 @@ def prompt_token_selection
 end
 
 def get_player_token
-    input = Input.new.get_input
+    Input.new.get_input
 end
 
 def display_board
