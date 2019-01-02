@@ -1,6 +1,6 @@
 class BoardPresenter
     def display_board
-        "        |     |      #{horizontal_bar}        |     |      #{horizontal_bar}        |     |     \n"
+        "        |      |      #{horizontal_bar}        |      |      #{horizontal_bar}        |      |     \n"
     end
 
     private

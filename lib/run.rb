@@ -35,4 +35,4 @@ def run
     puts display_board
 end
 
-run
+# run

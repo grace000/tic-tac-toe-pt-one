@@ -12,11 +12,11 @@ describe BoardPresenter do
             
             expect(@board_presenter.display_board).to eq(
                 <<~HEREDOC
-                        |     |      
+                        |      |      
                 --------------------------
-                        |     |      
+                        |      |      
                 --------------------------
-                        |     |     
+                        |      |     
                 HEREDOC
             )
         end

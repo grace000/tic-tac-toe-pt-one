@@ -36,11 +36,11 @@ describe "#display_board" do
     it "displays a board with no player marks" do
         expect(display_board).to eq(
             <<~HEREDOC
-                    |     |      
+                    |      |      
             --------------------------
-                    |     |      
+                    |      |      
             --------------------------
-                    |     |     
+                    |      |     
             HEREDOC
         )
     end
