@@ -15,6 +15,6 @@ class Board
     end
 
     def move(token, position)
-        @moves.insert(position, token)
+        @moves.insert(position-1, token)
     end
 end
