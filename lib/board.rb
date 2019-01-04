@@ -14,7 +14,7 @@ class Board
         @moves.length == 9
     end
 
-    def move(position)
-        @moves << position
+    def move(token, position)
+        @moves.insert(position, token)
     end
 end
