@@ -68,15 +68,17 @@ describe GameResults do
             board = Board.new
             result = GameResults.new
             
-            board.move(0)
-            board.move(1)
-            board.move(2)
-            board.move(3)
-            board.move(4)
-            board.move(5)
-            board.move(6)
-            board.move(7)
-            board.move(8)
+            token = "X"
+            
+            @board.move(token, 1)
+            @board.move(token, 2)
+            @board.move(token, 3)
+            @board.move(token, 4)
+            @board.move(token, 5)
+            @board.move(token, 6)
+            @board.move(token, 7)
+            @board.move(token, 8)
+            @board.move(token, 9)
 
             expect(result.draw?(board)).to eq(true)
         end
@@ -85,11 +87,12 @@ describe GameResults do
             board = Board.new
             result = GameResults.new
 
-            board.move(4)
-            board.move(5)
-            board.move(6)
-            board.move(7)
-            board.move(8)
+            token = "X"
+            @board.move(token, 4)
+            @board.move(token, 5)
+            @board.move(token, 6)
+            @board.move(token, 7)
+            @board.move(token, 8)
 
             expect(result.draw?(board)).to eq(false)
         end

@@ -12,7 +12,9 @@ describe Board do
         end
 
         it "returns false if there is one mark on the board" do
-            @board.move(0)
+            token = "X"
+            position = 0
+            @board.move(token, position)
 
             expect(@board.empty?).to eq(false)
         end
@@ -20,25 +22,27 @@ describe Board do
 
     describe "#full?" do
         it "returns true if the board is full" do
-            @board.move(0)
-            @board.move(1)
-            @board.move(2)
-            @board.move(3)
-            @board.move(4)
-            @board.move(5)
-            @board.move(6)
-            @board.move(7)
-            @board.move(8)
+            token = "X"
+            @board.move(token, 0)
+            @board.move(token, 1)
+            @board.move(token, 2)
+            @board.move(token, 3)
+            @board.move(token, 4)
+            @board.move(token, 5)
+            @board.move(token, 6)
+            @board.move(token, 7)
+            @board.move(token, 8)
 
             expect(@board.full?).to eq(true)
         end
 
         it "returns false if the board is not full" do
-            @board.move(0)
-            @board.move(1)
-            @board.move(2)
-            @board.move(3)
-            @board.move(4)
+            token = "X"
+            @board.move(token, 0)
+            @board.move(token, 1)
+            @board.move(token, 2)
+            @board.move(token, 3)
+            @board.move(token, 4)
 
             expect(@board.full?).to eq(false)
         end
