@@ -10,10 +10,14 @@ class TicTacToe
         @board_presenter = BoardPresenter.new
     end
 
-    def play
+    def welcome_player
         puts Prompt::WELCOME
         CommandLineIn.new.get_input
         puts Prompt::MAKE_TOKEN_SELECTION
+    end
+
+    def play
+        welcome_player
         selected_token = CommandLineIn.new.get_input
         puts "Thanks for selecting #{selected_token}. Let's start the game!" 
         puts board_presenter.display_board(board.moves)
