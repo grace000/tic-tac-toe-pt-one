@@ -31,16 +31,16 @@ class TicTacToe
         welcome_player
         puts board_presenter.display_board(board.moves)
         select_coordinate
-        take_turn(@@selected_move, @@selected_token)
+        take_turn(@@selected_token, @@selected_move)
         puts board_presenter.display_board(board.moves)
     end
 
-    def take_turn(position, token)
-        if input_validator.valid_coordinate?(position)
+    def take_turn(token, position)
+        if input_validator.valid_coordinate?(position) && input_validator.valid_move?(board.moves, position)
             board.move(token, position)
         else
             select_coordinate
-            take_turn(@@selected_move, @@selected_token)
+            take_turn(@@selected_token, @@selected_move)
         end
     end
 
