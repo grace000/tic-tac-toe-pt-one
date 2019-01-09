@@ -38,11 +38,6 @@ describe Board do
 
         it "returns false if the board is not full" do
             token = "X"
-            
-            @board.move(token, 1)
-            @board.move(token, 2)
-            @board.move(token, 3)
-            @board.move(token, 4)
             @board.move(token, 5)
 
             expect(@board.full?).to eq(false)
