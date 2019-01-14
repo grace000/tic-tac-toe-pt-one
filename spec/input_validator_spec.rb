@@ -23,17 +23,25 @@ describe InputValidator do
     end
 
     describe "#valid_token?" do
-        it "should return false if token is not X or O" do
+        it "should return false if token is not a letter from A to Z" do
             
-            expect(@input_v.valid_token?("P")).to eq(false)
             expect(@input_v.valid_token?("3")).to eq(false)
-            expect(@input_v.valid_token?("M")).to eq(false)
         end
 
-        it "should return true if token is X or O" do
+        it "should return false if token is a blank character" do
+            
+            expect(@input_v.valid_token?(" ")).to eq(false)
+        end
+
+        it "should return false if token is more than one character in length" do
+            
+            expect(@input_v.valid_token?("DF")).to eq(false)
+        end
+
+        it "should return true if token is a letter from A to Z" do
             
             expect(@input_v.valid_token?("X")).to eq(true)
-            expect(@input_v.valid_token?("O")).to eq(true)
+            expect(@input_v.valid_token?("G")).to eq(true)
         end
     end
 end
