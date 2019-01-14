@@ -37,7 +37,7 @@ class TicTacToe
 
     def take_turn(token, position)
         if input_validator.valid_coordinate?(position) && input_validator.valid_move?(board.moves, position)
-            board.move(token, position)
+            board.move(@@selected_token, @@selected_move)
         else
             select_coordinate
             take_turn(@@selected_token, @@selected_move)
