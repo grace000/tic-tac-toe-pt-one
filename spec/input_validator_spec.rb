@@ -27,42 +27,21 @@ describe InputValidator do
             @board = Board.new
         end
 
-        it "should return false if one requested move is already in the board's moves array" do
+        it "should return false if requested move is already in the board's moves array" do
             token = "X"
             @board.move(token, 2)
             
             expect(@input_v.valid_move?(@board.moves, 2)).to eq(false)
         end
 
-        it "should return false if many requested moves are already in the board's moves array" do
-            token = "X"
-            
-            @board.move(token, 3)
-            @board.move(token, 1)
-            @board.move(token, 4)
-          
-            expect(@input_v.valid_move?(@board.moves, 3)).to eq(false)
-            expect(@input_v.valid_move?(@board.moves, 1)).to eq(false)
-            expect(@input_v.valid_move?(@board.moves, 4)).to eq(false)
-        end
-
         it "should return true if requested move is not in the board's moves array" do
             token = "X"
             @board.move(token, 1)
+            @board.move(token, 5)
 
             expect(@input_v.valid_move?(@board.moves, 3)).to eq(true)
         end
 
-        it "should return true if requested moves are not in the board's moves array" do
-            token = "X"
-            @board.move(token, 1)
-            @board.move(token, 4)
-            @board.move(token, 8)
-
-            expect(@input_v.valid_move?(@board.moves, 2)).to eq(true)
-            expect(@input_v.valid_move?(@board.moves, 3)).to eq(true)
-            expect(@input_v.valid_move?(@board.moves, 5)).to eq(true)
-        end
     end
 
     describe "#valid_token?" do
