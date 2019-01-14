@@ -8,6 +8,6 @@ class InputValidator
     end
 
     def valid_token?(token)
-        token.match?(/[a-zA-Z]/) && token.length == 1
+        !token.nil? && token.match?(/[a-zA-Z]/) && token.length == 1
     end
 end

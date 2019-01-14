@@ -33,6 +33,11 @@ describe InputValidator do
             expect(@input_v.valid_token?(" ")).to eq(false)
         end
 
+        it "should return false if token is nil" do
+            
+            expect(@input_v.valid_token?(nil)).to eq(false)
+        end
+
         it "should return false if token is more than one character in length" do
             
             expect(@input_v.valid_token?("DF")).to eq(false)
