@@ -22,28 +22,6 @@ describe InputValidator do
         end      
     end
 
-    describe "#valid_move?" do
-        before(:each) do
-            @board = Board.new
-        end
-
-        it "should return false if requested move is already in the board's moves array" do
-            token = "X"
-            @board.move(token, 2)
-            
-            expect(@input_v.valid_move?(@board.moves, 2)).to eq(false)
-        end
-
-        it "should return true if requested move is not in the board's moves array" do
-            token = "X"
-            @board.move(token, 1)
-            @board.move(token, 5)
-
-            expect(@input_v.valid_move?(@board.moves, 3)).to eq(true)
-        end
-
-    end
-
     describe "#valid_token?" do
         it "should return false if token is not X or O" do
             

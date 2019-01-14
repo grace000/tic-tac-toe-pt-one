@@ -7,11 +7,6 @@ class InputValidator
         true
     end
 
-    def valid_move?(board_state, move)
-        move -= 1
-        board_state[move].nil?
-    end
-
     def valid_token?(token)
         token == "X" || token == "O"
     end

@@ -31,11 +31,11 @@ class TicTacToe
 
     def take_turn(position)
         input_validator = InputValidator.new
-        if input_validator.valid_coordinate?(position) && input_validator.valid_move?(board.moves, position)
+        if input_validator.valid_coordinate?(position)
             board.move(player.token, position)
         else
-            select_coordinate
-            take_turn(position)
+            user_coordinate = select_coordinate
+            take_turn(user_coordinate)
         end
     end
 
