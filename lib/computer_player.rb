@@ -1,2 +1,0 @@
-class ComputerPlayer < Player 
-end

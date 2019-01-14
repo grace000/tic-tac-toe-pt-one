@@ -7,14 +7,15 @@ class Board
     end
     
     def empty?
-        @moves.length == 0
+        moves.length == 0
     end
 
     def full?
-        @moves.length == 9
+        moves.length == 9
     end
 
-    def move(position)
-        @moves << position
+    def move(token, position)
+        position -= 1
+        @moves[position] = token
     end
 end

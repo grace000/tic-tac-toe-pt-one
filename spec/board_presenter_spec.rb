@@ -7,8 +7,8 @@ describe BoardPresenter do
 
     describe "#display_board" do
         it "renders empty board if there are no player marks" do
-            
-            expect(@board_presenter.display_board).to eq(
+            board = []
+            expect(@board_presenter.display_board(board)).to eq(
                 <<~HEREDOC
                         |      |      
                 --------------------------
