@@ -6,8 +6,6 @@ require_relative './input_validator'
 require_relative './player'
 
 class TicTacToe
-    @@selected_move
-    
     attr_accessor :board, :board_presenter, :input_validator
     attr_reader :player
     def initialize
@@ -34,23 +32,23 @@ class TicTacToe
 
     def take_turn(position)
         if input_validator.valid_coordinate?(position) && input_validator.valid_move?(board.moves, position)
-            board.move(player.token, @@selected_move)
+            board.move(player.token, position)
         else
             select_coordinate
-            take_turn(@@selected_move)
+            take_turn(position)
         end
     end
 
     def select_coordinate
         puts Prompt::MAKE_COORDINATE_SELECTION
-        @@selected_move = CommandLineIn.new.get_input.to_i
+        CommandLineIn.new.get_input.to_i
     end
 
     def play
         welcome_player
         puts board_presenter.display_board(board.moves)
-        select_coordinate
-        take_turn(@@selected_move)
+        user_coordinate = select_coordinate
+        take_turn(user_coordinate)
         puts board_presenter.display_board(board.moves)
     end
 end
