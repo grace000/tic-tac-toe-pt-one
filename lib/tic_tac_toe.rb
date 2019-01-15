@@ -34,7 +34,7 @@ class TicTacToe
             @board.move(player.token, position)
         else
             user_coordinate = select_coordinate
-            take_turn(user_coordinate)
+            take_turn(@board.moves, user_coordinate)
         end
     end
 
