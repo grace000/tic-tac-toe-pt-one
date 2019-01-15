@@ -28,10 +28,10 @@ class TicTacToe
         end
     end
 
-    def take_turn(position)
+    def take_turn(board, position)
         input_validator = InputValidator.new
-        if input_validator.valid_coordinate?(position)
-            board.move(player.token, position)
+        if input_validator.valid_coordinate?(@board.moves, position)
+            @board.move(player.token, position)
         else
             user_coordinate = select_coordinate
             take_turn(user_coordinate)
@@ -49,7 +49,7 @@ class TicTacToe
         get_player_token
         puts BoardPresenter.new.display_board(board.moves)
         user_coordinate = select_coordinate
-        take_turn(user_coordinate)
+        take_turn(@board.moves, user_coordinate)
         puts BoardPresenter.new.display_board(board.moves)
     end
 end
