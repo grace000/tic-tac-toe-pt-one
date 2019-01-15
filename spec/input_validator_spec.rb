@@ -8,18 +8,31 @@ describe InputValidator do
     end
 
     describe "#valid_coordinate?" do
+        before(:each) do
+            @board = Board.new
+        end
+
         it "should return true for integers 1 through 9" do
 
-            expect(@input_v.valid_coordinate?(2)).to eq(true)
-            expect(@input_v.valid_coordinate?(5)).to eq(true)
+            expect(@input_v.valid_coordinate?(@board.moves, 2)).to eq(true)
+            expect(@input_v.valid_coordinate?(@board.moves, 5)).to eq(true)
         end
+
         it "should return false for any characters besides integers 1-9" do
 
-            expect(@input_v.valid_coordinate?(0)).to eq(false)
-            expect(@input_v.valid_coordinate?("k")).to eq(false)
-            expect(@input_v.valid_coordinate?("+")).to eq(false)
-            expect(@input_v.valid_coordinate?("/")).to eq(false)
-        end      
+            expect(@input_v.valid_coordinate?(@board.moves, 0)).to eq(false)
+            expect(@input_v.valid_coordinate?(@board.moves, "k")).to eq(false)
+            expect(@input_v.valid_coordinate?(@board.moves, "+")).to eq(false)
+            expect(@input_v.valid_coordinate?(@board.moves, "/")).to eq(false)
+        end
+        
+        it 'should return false for integers that have been previously requested' do
+            token = "X"
+            
+            @board.move(token, 2)
+
+            expect(@input_v.valid_coordinate?(@board.moves, 2)).to eq(false)
+        end
     end
 
     describe "#valid_token?" do
