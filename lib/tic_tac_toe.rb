@@ -10,6 +10,7 @@ class TicTacToe
     attr_reader :player
     def initialize
         @board = Board.new
+        @presenter = BoardPresenter.new
     end
 
     def player=(input)
@@ -43,14 +44,18 @@ class TicTacToe
         CommandLineIn.new.get_input.to_i
     end
 
-    def play
+    def start_game_engine
         puts Prompt::WELCOME
         puts Prompt::MAKE_TOKEN_SELECTION
         get_player_token
-        puts BoardPresenter.new.display_board(board.moves)
+        play_game
+    end
+
+    def play_game
+        puts @presenter.display_board(@board.moves)
         user_coordinate = select_coordinate
         take_turn(@board.moves, user_coordinate)
-        puts BoardPresenter.new.display_board(board.moves)
+        play_game
     end
 end
 
