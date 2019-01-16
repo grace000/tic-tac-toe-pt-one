@@ -86,9 +86,18 @@ class TicTacToe
         puts @presenter.display_board(@board.moves)
         user_coordinate = human_select_coordinate
         human_take_turn(@board.moves, user_coordinate,human_player.token)
-        computer_selected_coordinate = computer_select_coordinate
-        computer_take_turn(@board.moves, computer_selected_coordinate)
-        play_game
+        if end_game?
+            puts @presenter.display_board(@board.moves)
+            puts "game over"
+        else
+            computer_selected_coordinate = computer_select_coordinate
+            computer_take_turn(@board.moves, computer_selected_coordinate)
+            play_game
+        end
+    end
+
+    def end_game?
+        @board.full?
     end
 end
 
