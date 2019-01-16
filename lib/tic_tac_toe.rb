@@ -7,35 +7,50 @@ require_relative './player'
 
 class TicTacToe
     attr_accessor :board 
-    attr_reader :player
+    attr_reader :human_player, :computer_player
     def initialize
         @board = Board.new
         @presenter = BoardPresenter.new
     end
 
-    def player=(input)
-        @player = Player.new(input)
+    def human_player=(input)
+        @human_player = Player.new(input)
     end
 
-    def get_player_token
+    def computer_player=(input)
+        @computer_player = Player.new(input)
+    end
+
+
+    def get_human_player_token
         token = CommandLineIn.new.get_input.upcase
-        self.player = token
+        self.human_player = token
         input_validator = InputValidator.new
-        if input_validator.valid_token?(player.token)
-            puts "Thanks for selecting #{player.token}."
+        if input_validator.valid_token?(human_player.token)
+            puts "Thanks for selecting #{human_player.token}."
         else
             puts Prompt::RETRY_MAKE_TOKEN_SELECTION
-            get_player_token
+            get_human_player_token
         end
     end
 
-    def take_turn(board, position)
+    def get_computer_player_token
+        token = "X"
+        while 
+            token == human_player.token
+            token = ("A".."Z").to_a.sample
+        end
+        self.computer_player = token
+        puts "The computer will play with #{token}. Let's start the game!"
+    end
+
+    def human_take_turn(board, position, token)
         input_validator = InputValidator.new
         if input_validator.valid_coordinate?(@board.moves, position)
-            @board.move(player.token, position)
+            @board.move(token, position)
         else
             user_coordinate = select_coordinate
-            take_turn(@board.moves, user_coordinate)
+            human_take_turn(@board.moves, user_coordinate, human_player.token)
         end
     end
 
@@ -47,14 +62,15 @@ class TicTacToe
     def start_game_engine
         puts Prompt::WELCOME
         puts Prompt::MAKE_TOKEN_SELECTION
-        get_player_token
+        get_human_player_token
+        get_computer_player_token
         play_game
     end
 
     def play_game
         puts @presenter.display_board(@board.moves)
         user_coordinate = select_coordinate
-        take_turn(@board.moves, user_coordinate)
+        human_take_turn(@board.moves, user_coordinate,human_player.token)
         play_game
     end
 end
