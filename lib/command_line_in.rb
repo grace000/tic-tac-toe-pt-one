@@ -1,5 +1,5 @@
 class CommandLineIn
     def get_input
-        $stdin.gets.chomp.upcase
+        $stdin.gets.chomp
     end
 end

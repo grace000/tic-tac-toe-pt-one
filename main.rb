@@ -1,4 +1,4 @@
 require './lib/tic_tac_toe'
 
 ttt = TicTacToe.new
-ttt.play
+ttt.start_game_engine
