@@ -22,7 +22,7 @@ class TicTacToe
         self.player = token
         input_validator = InputValidator.new
         if input_validator.valid_token?(player.token)
-            puts "Thanks for selecting #{player.token}. Let's start the game!"
+            puts "Thanks for selecting #{player.token}."
         else
             puts Prompt::RETRY_MAKE_TOKEN_SELECTION
             get_player_token
