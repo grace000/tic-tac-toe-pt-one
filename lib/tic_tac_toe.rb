@@ -44,19 +44,34 @@ class TicTacToe
         puts "The computer will play with #{token}. Let's start the game!"
     end
 
+    def human_select_coordinate
+        puts Prompt::MAKE_COORDINATE_SELECTION
+        CommandLineIn.new.get_input.to_i
+    end
+
     def human_take_turn(board, position, token)
         input_validator = InputValidator.new
         if input_validator.valid_coordinate?(@board.moves, position)
             @board.move(token, position)
         else
-            user_coordinate = select_coordinate
+            user_coordinate = human_select_coordinate
             human_take_turn(@board.moves, user_coordinate, human_player.token)
         end
     end
 
-    def select_coordinate
-        puts Prompt::MAKE_COORDINATE_SELECTION
-        CommandLineIn.new.get_input.to_i
+    def computer_select_coordinate
+        rand(0..9)
+    end
+
+    def computer_take_turn(board, position)
+        input_validator = InputValidator.new
+        if input_validator.valid_coordinate?(@board.moves, position)
+            @board.move(computer_player.token, position)
+            puts "Computer taking turn at #{position}"
+        else
+            computer_selected_coordinate = computer_select_coordinate
+            computer_take_turn(@board.moves, computer_selected_coordinate)
+        end
     end
 
     def start_game_engine
@@ -69,8 +84,10 @@ class TicTacToe
 
     def play_game
         puts @presenter.display_board(@board.moves)
-        user_coordinate = select_coordinate
+        user_coordinate = human_select_coordinate
         human_take_turn(@board.moves, user_coordinate,human_player.token)
+        computer_selected_coordinate = computer_select_coordinate
+        computer_take_turn(@board.moves, computer_selected_coordinate)
         play_game
     end
 end
