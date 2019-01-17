@@ -37,14 +37,14 @@ class TicTacToe
             @board.move(token, position)
         else
             user_coordinate = select_coordinate
-            take_turn(@board.moves, user_coordinate, player.token)
+            take_turn(@board.moves, user_coordinate, token)
         end
     end
 
     def start_game_engine
         puts Prompt::WELCOME
         2.times { |i|
-            puts "Player #{i+1}"
+            puts "PLAYER #{i+1}"
             puts Prompt::MAKE_TOKEN_SELECTION
             selected_token = CommandLineIn.new.get_input.upcase
             assign_player_token(selected_token)
@@ -53,9 +53,12 @@ class TicTacToe
     end
 
     def play_game
-        puts @presenter.display_board(@board.moves)
-        user_coordinate = select_coordinate
-        take_turn(@board.moves, user_coordinate, player.token)
+        @players.each { |player| 
+            puts "HELLO PLAYER #{player.token}"
+            puts @presenter.display_board(@board.moves)
+            user_coordinate = select_coordinate
+            take_turn(@board.moves, user_coordinate, player.token)
+        }
         play_game
     end
 end
