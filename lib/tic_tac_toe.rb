@@ -7,97 +7,56 @@ require_relative './player'
 
 class TicTacToe
     attr_accessor :board 
-    attr_reader :human_player, :computer_player
     def initialize
         @board = Board.new
         @presenter = BoardPresenter.new
+        @players = []
     end
 
-    def human_player=(input)
-        @human_player = Player.new(input)
-    end
-
-    def computer_player=(input)
-        @computer_player = Player.new(input)
-    end
-
-
-    def get_human_player_token
-        token = CommandLineIn.new.get_input.upcase
-        self.human_player = token
+    def assign_player_token(input)
         input_validator = InputValidator.new
-        if input_validator.valid_token?(human_player.token)
-            puts "Thanks for selecting #{human_player.token}."
+        if input_validator.valid_token?(input)
+            puts "Thanks for selecting #{input}."
+            player = Player.new(input)
+            @players << player
         else
             puts Prompt::RETRY_MAKE_TOKEN_SELECTION
-            get_human_player_token
+            selected_token = CommandLineIn.new.get_input.upcase
+            assign_player_token(selected_token)
         end
     end
 
-    def get_computer_player_token
-        token = "X"
-        while 
-            token == human_player.token
-            token = ("A".."Z").to_a.sample
-        end
-        self.computer_player = token
-        puts "The computer will play with #{token}. Let's start the game!"
-    end
-
-    def human_select_coordinate
+    def select_coordinate
         puts Prompt::MAKE_COORDINATE_SELECTION
         CommandLineIn.new.get_input.to_i
     end
 
-    def human_take_turn(board, position, token)
+    def take_turn(board, position, token)
         input_validator = InputValidator.new
         if input_validator.valid_coordinate?(@board.moves, position)
             @board.move(token, position)
         else
-            user_coordinate = human_select_coordinate
-            human_take_turn(@board.moves, user_coordinate, human_player.token)
-        end
-    end
-
-    def computer_select_coordinate
-        rand(0..9)
-    end
-
-    def computer_take_turn(board, position)
-        input_validator = InputValidator.new
-        if input_validator.valid_coordinate?(@board.moves, position)
-            @board.move(computer_player.token, position)
-            puts "Computer taking turn at #{position}"
-        else
-            computer_selected_coordinate = computer_select_coordinate
-            computer_take_turn(@board.moves, computer_selected_coordinate)
+            user_coordinate = select_coordinate
+            take_turn(@board.moves, user_coordinate, player.token)
         end
     end
 
     def start_game_engine
         puts Prompt::WELCOME
-        puts Prompt::MAKE_TOKEN_SELECTION
-        get_human_player_token
-        get_computer_player_token
+        2.times { |i|
+            puts "Player #{i+1}"
+            puts Prompt::MAKE_TOKEN_SELECTION
+            selected_token = CommandLineIn.new.get_input.upcase
+            assign_player_token(selected_token)
+        }
         play_game
     end
 
     def play_game
         puts @presenter.display_board(@board.moves)
-        user_coordinate = human_select_coordinate
-        human_take_turn(@board.moves, user_coordinate,human_player.token)
-        if end_game?
-            puts @presenter.display_board(@board.moves)
-            puts "game over"
-        else
-            computer_selected_coordinate = computer_select_coordinate
-            computer_take_turn(@board.moves, computer_selected_coordinate)
-            play_game
-        end
-    end
-
-    def end_game?
-        @board.full?
+        user_coordinate = select_coordinate
+        take_turn(@board.moves, user_coordinate, player.token)
+        play_game
     end
 end
 
