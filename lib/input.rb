@@ -11,7 +11,7 @@ class Input
         validator = InputValidator.new
         loop do
             break if validator.valid_token?(input)
-            puts "Please enter valid token"
+            puts "Try again. Please enter valid token."
             input = input_type.get_input 
         end
         input.upcase

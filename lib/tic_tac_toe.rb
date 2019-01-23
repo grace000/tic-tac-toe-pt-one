@@ -1,4 +1,5 @@
 require_relative './command_line_in'
+require_relative './input'
 require_relative './prompt'
 require_relative './board'
 require_relative './input_validator'
@@ -13,33 +14,22 @@ class TicTacToe
     end
 
     def assign_player_token(input)
-        input_validator = InputValidator.new
-        input_validator.valid_token?(input)
         puts "Thanks for selecting #{input}."
         player = Player.new(input)
         @players << player
-
-        # if input_validator.valid_token?(input)
-        #     puts "Thanks for selecting #{input}."
-        #     player = Player.new(input)
-        #     @players << player
-        # else
-        #     puts Prompt::RETRY_MAKE_TOKEN_SELECTION
-        #     selected_token = select_player_token
-        #     assign_player_token(selected_token)
-        # end
     end
 
-    def select_player_token
-        CommandLineIn.new.get_input.upcase
-    end
+    # def select_player_token
+    #     Input.new
+    # end
 
     def start_game_engine
         puts Prompt::WELCOME
         2.times { |i|
             puts "PLAYER #{i+1}"
             puts Prompt::MAKE_TOKEN_SELECTION
-            selected_token = select_player_token
+            cli_input = CommandLineIn.new
+            selected_token = Input.new(cli_input).get_token
             assign_player_token(selected_token)
         }
         Game.new.play(@players, @board)
