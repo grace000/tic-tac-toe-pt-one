@@ -14,15 +14,24 @@ class TicTacToe
 
     def assign_player_token(input)
         input_validator = InputValidator.new
-        if input_validator.valid_token?(input)
-            puts "Thanks for selecting #{input}."
-            player = Player.new(input)
-            @players << player
-        else
-            puts Prompt::RETRY_MAKE_TOKEN_SELECTION
-            selected_token = CommandLineIn.new.get_input.upcase
-            assign_player_token(selected_token)
-        end
+        input_validator.valid_token?(input)
+        puts "Thanks for selecting #{input}."
+        player = Player.new(input)
+        @players << player
+
+        # if input_validator.valid_token?(input)
+        #     puts "Thanks for selecting #{input}."
+        #     player = Player.new(input)
+        #     @players << player
+        # else
+        #     puts Prompt::RETRY_MAKE_TOKEN_SELECTION
+        #     selected_token = select_player_token
+        #     assign_player_token(selected_token)
+        # end
+    end
+
+    def select_player_token
+        CommandLineIn.new.get_input.upcase
     end
 
     def start_game_engine
@@ -30,7 +39,7 @@ class TicTacToe
         2.times { |i|
             puts "PLAYER #{i+1}"
             puts Prompt::MAKE_TOKEN_SELECTION
-            selected_token = CommandLineIn.new.get_input.upcase
+            selected_token = select_player_token
             assign_player_token(selected_token)
         }
         Game.new.play(@players, @board)
