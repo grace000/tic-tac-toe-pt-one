@@ -1,21 +1,25 @@
 require 'input'
-require 'command_line_in'
-require 'stringio'
+require 'command_line_input'
 
 describe Input do
     before(:each) do
-        cli = CommandLineIn.new
+        cli = CommandLineInput.new
         @input = Input.new(cli)
     end
 
     describe "#get_token" do
-        it "requests that user select token again after invalid input" do
-            allow(@input).to receive(:gets).and_return("!")
-            allow(@input).to receive(:loop).and_yield
+        context "given invalid token input" do
+            it "expects a loop after invalid input" do
+                allow_any_instance_of(CommandLineInput).to receive(:get_input).and_return("3")
+                expect(@input).to receive(:get_token).exactly(1).times
+                @input.get_token
+            end
 
-            expect { @input.get_token }
-                .to output("Try again. Please enter valid token.\n")
-                .to_stdout
+            it "exits loop after valid token input" do
+                allow_any_instance_of(CommandLineInput).to receive(:get_input).and_return("X")
+                result = @input.get_token
+                expect(result).to eq("X")
+            end
         end
     end
 end

@@ -9,8 +9,7 @@ class Input
     def get_token
         input = input_type.get_input 
         validator = InputValidator.new
-        loop do
-            break if validator.valid_token?(input)
+        while !validator.valid_token?(input) do
             puts "Try again. Please enter valid token."
             input = input_type.get_input 
         end

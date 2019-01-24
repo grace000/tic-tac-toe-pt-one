@@ -1,5 +1,5 @@
 require_relative './board_presenter'
-require_relative './command_line_in'
+require_relative './command_line_input'
 require_relative './input_validator'
 require_relative './prompt'
 require_relative './board'
@@ -12,7 +12,7 @@ class Game
 
     def select_coordinate
         puts Prompt::MAKE_COORDINATE_SELECTION
-        CommandLineIn.new.get_input.to_i
+        CommandLineInput.new.get_input.to_i
     end
 
     def take_turn(board, position, token)
