@@ -1,8 +1,9 @@
 require_relative './input_validator'
+require_relative './command_line_input'
 
 class Input
     attr_accessor :input_type
-    def initialize(input_type)
+    def initialize(input_type = CommandLineInput.new)
         @input_type = input_type
     end
 

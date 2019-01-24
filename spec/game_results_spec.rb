@@ -6,10 +6,12 @@ describe GameResults do
         it "should return true if a set of markings STRAIGHT--match a winning combo" do
             result = GameResults.new()
 
+
             moves = [0,1,2]
             call = result.winner?(moves)
             expect(call).to eq(true)
         end
+
 
         it "should return true if a different set of markings STRAIGHT--match a winning combo" do
             result = GameResults.new()
@@ -53,6 +55,34 @@ describe GameResults do
 
             expect(result.winner?([0,4])).to eq(false)
             expect(result.winner?([0])).to eq(false)
+        end
+
+        it "should return false if the board is full and there are no winning combos" do
+            result = GameResults.new
+            board = Board.new 
+
+            board.move("X", 1)
+            board.move("O", 2)
+            board.move("X", 3)
+            board.move("O", 4)
+            board.move("O", 5)
+            board.move("X", 6)
+            board.move("O", 7)
+            board.move("X", 8)
+            board.move("O", 9)
+
+            expect(result.winner?(board.moves)).to eq(false)
+        end
+
+        xit "should return false if the board is not full and there are no winning combos" do
+            result = GameResults.new
+            board = Board.new 
+
+            board.move("X", 1)
+            board.move("O", 2)
+            board.move("X", 3)
+
+            expect(result.winner?(board.moves)).to eq(false)
         end
     end 
     
