@@ -1,13 +1,20 @@
 class GameResults
-    def winner?(moves)
-        return false if moves.length <= 2 
+    def winner?(board)
+        if board.moves.length >= 5
+            has_winning_combos?(board)
+        else 
+            false
+        end
+    end
+
+    def has_winning_combos?(board)
         winning_combos.any? { |i, j, k|
-            moves[i] == moves[j] && moves[i] == moves[k]
+            board.moves[i] == board.moves[j] && board.moves[i] == board.moves[k]
         }
     end
 
     def draw?(board)
-        board.full?
+        !winner?(board) && board.full?
     end
 
     def winning_combos
@@ -21,7 +28,7 @@ class GameResults
     private 
 
         def winning_rows
-            @winning_rows = [
+            [
                 [0,1,2],
                 [3,4,5],
                 [6,7,8],
@@ -29,7 +36,7 @@ class GameResults
         end
         
         def winning_cols
-           @winning_cols =  [
+            [
                 [0,3,6],
                 [1,4,7],
                 [2,5,8],
@@ -37,7 +44,7 @@ class GameResults
         end
 
         def winning_diags
-            @winning_diags = [
+            [
                 [0,4,8],
                 [2,4,6]
             ]

@@ -25,13 +25,19 @@ class Game
         end
     end
 
+    def game_over?(board)
+        winner?(board)
+    end
+
     def play(players, board)
         players.each { |player| 
             puts "HELLO PLAYER #{player.token}"
             puts @presenter.display_board(board.moves)
             user_coordinate = select_coordinate
             take_turn(board, user_coordinate, player.token)
+            unless game_over?(board)
+                play(players, board)
+            end
         }
-        play(players, board)
     end
 end
