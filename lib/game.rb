@@ -3,11 +3,13 @@ require_relative './command_line_input'
 require_relative './input_validator'
 require_relative './prompt'
 require_relative './board'
+require_relative './game_results'
 
 class Game
     attr_accessor :board 
     def initialize
         @presenter = BoardPresenter.new
+        @game_result = GameResults.new 
     end
 
     def select_coordinate
@@ -26,7 +28,7 @@ class Game
     end
 
     def game_over?(board)
-        winner?(board)
+        @game_result.draw?(board)
     end
 
     def play(players, board)
@@ -35,9 +37,8 @@ class Game
             puts @presenter.display_board(board.moves)
             user_coordinate = select_coordinate
             take_turn(board, user_coordinate, player.token)
-            unless game_over?(board)
-                play(players, board)
-            end
+            return puts "Game over" if game_over?(board)
         }
+        play(players, board)
     end
 end
