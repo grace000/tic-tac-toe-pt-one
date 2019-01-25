@@ -1,25 +1,24 @@
 require 'input'
-require 'command_line_input'
+require 'input_validator'
 
 describe Input do
-    before(:each) do
-        cli = CommandLineInput.new
-        @input = Input.new(cli)
-    end
+  describe "#get_token" do
+    it "should call get_input and validate_token until validate_token returns true" do
+      # Arrange
+      mockInputMethod = double
+      allow(mockInputMethod).to receive(:get_input).and_return("3", "X")
 
-    describe "#get_token" do
-        context "given invalid token input" do
-            it "expects a loop after invalid input" do
-                allow_any_instance_of(CommandLineInput).to receive(:get_input).and_return("3")
-                expect(@input).to receive(:get_token).exactly(1).times
-                @input.get_token
-            end
+      mockValidator = double
+      allow(mockValidator).to receive(:validate_token).and_return(false, true)
 
-            it "exits loop after valid token input" do
-                allow_any_instance_of(CommandLineInput).to receive(:get_input).and_return("X")
-                result = @input.get_token
-                expect(result).to eq("X")
-            end
-        end
+      # Assert
+      expect(mockInputMethod).to receive(:get_input).exactly(2).times
+      expect(mockValidator).to receive(:validate_token).with("3").ordered
+      expect(mockValidator).to receive(:validate_token).with("X").ordered
+
+      # Act
+      testInput = Input.new(mockInputMethod, mockValidator)
+      testInput.get_token
     end
+  end
 end

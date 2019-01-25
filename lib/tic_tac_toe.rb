@@ -1,4 +1,3 @@
-require_relative './command_line_input'
 require_relative './input'
 require_relative './prompt'
 require_relative './board'
@@ -11,6 +10,7 @@ class TicTacToe
     def initialize
         @board = Board.new
         @players = []
+        @input = Input.new
     end
 
     def assign_player_token(input)
@@ -24,8 +24,7 @@ class TicTacToe
         2.times { |i|
             puts "PLAYER #{i+1}"
             puts Prompt::MAKE_TOKEN_SELECTION
-            cli_input = CommandLineInput.new
-            selected_token = Input.new(cli_input).get_token
+            selected_token = @input.get_token
             assign_player_token(selected_token)
         }
         Game.new.play(@players, @board)
