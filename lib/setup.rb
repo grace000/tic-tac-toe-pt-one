@@ -6,7 +6,7 @@ require_relative './input_validator'
 require_relative './player'
 require_relative './game'
 
-class TicTacToe
+class Setup
     attr_accessor :board 
     def initialize
         @board = Board.new
