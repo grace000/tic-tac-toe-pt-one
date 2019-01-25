@@ -14,11 +14,7 @@ class GameResults
     end
 
     def draw?(board)
-        if !board.full? || board.full? && has_winning_combos?(board)
-            false
-        else
-            true
-        end
+        !has_winning_combos?(board)
     end
 
     def winning_combos
