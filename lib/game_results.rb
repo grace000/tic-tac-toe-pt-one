@@ -8,7 +8,7 @@ class GameResults
     end
 
     def has_winning_combos?(board)
-        has_winning_row?(board) || has_winning_column?(board) || has_winning_diagonal?(board)
+        has_winning_row?(board) || has_winning_column?(board)
     end
 
     def draw?(board)
