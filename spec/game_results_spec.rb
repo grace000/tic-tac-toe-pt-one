@@ -49,7 +49,7 @@ describe GameResults do
             expect(@game_result.has_winning_combos?(@board)).to eq(true)
         end
 
-        xit "returns false if the board's first row does not have a winning combination" do
+        it "returns false if the board's first row does not have a winning combination" do
             @board.move("X", 1)
             @board.move("O", 2)
             @board.move("O", 3)
@@ -65,6 +65,40 @@ describe GameResults do
             @board.move("O", 9)
 
             expect(@game_result.has_winning_combos?(@board)).to eq(true)
+        end
+
+        it "returns true if the board's second column has a winning combination" do
+            @board.move("X", 2)
+            @board.move("X", 5)
+            @board.move("O", 4)
+            @board.move("O", 7)
+            @board.move("X", 8)
+
+            expect(@game_result.has_winning_combos?(@board)).to eq(true)
+        end
+
+        it "returns true if the board's third column has a winning combination" do
+            @board.move("X", 3)
+            @board.move("X", 6)
+            @board.move("O", 4)
+            @board.move("O", 7)
+            @board.move("X", 9)
+
+            expect(@game_result.has_winning_combos?(@board)).to eq(true)
+        end
+
+        it "returns false if the board's no columns or rows have a winning combination" do
+            @board.move("X", 1)
+            @board.move("O", 2)
+            @board.move("O", 3)
+            @board.move("O", 4)
+            @board.move("X", 5)
+            @board.move("X", 6)
+            @board.move("X", 7)
+            @board.move("X", 8)
+            @board.move("O", 9)
+
+            expect(@game_result.has_winning_combos?(@board)).to eq(false)
         end
     end
     
