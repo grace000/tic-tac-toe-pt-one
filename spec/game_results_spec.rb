@@ -49,7 +49,7 @@ describe GameResults do
             expect(@game_result.has_winning_combos?(@board)).to eq(true)
         end
 
-        xit "returns false if the board's top row does not have a winning combination" do
+        xit "returns false if the board's first row does not have a winning combination" do
             @board.move("X", 1)
             @board.move("O", 2)
             @board.move("O", 3)
@@ -57,12 +57,12 @@ describe GameResults do
             expect(@game_result.has_winning_combos?(@board)).to eq(false)
         end
 
-        it "returns true if the board has identical markings at indices that match the third winning row " do
-            @board.move("O", 1)
+        it "returns true if the board's first column has a winning combination" do
+            @board.move("X", 1)
             @board.move("O", 5)
+            @board.move("X", 4)
             @board.move("X", 7)
-            @board.move("X", 8)
-            @board.move("X", 9) 
+            @board.move("O", 9)
 
             expect(@game_result.has_winning_combos?(@board)).to eq(true)
         end
