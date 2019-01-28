@@ -9,7 +9,6 @@ class GameResults
 
     def has_winning_combos?(board)
         has_winning_row?(board) || has_winning_column?(board)
-        # has_winning_column?(board) || has_winning_diagonal?(board)
     end
 
     def draw?(board)
@@ -18,8 +17,8 @@ class GameResults
 
     private 
     def all_cells_equal?(row)
-        return if row.first == nil
-        
+        return false if row.include?(nil)
+
         row.each_cons(2).all? { |x,y| x == y }
     end
 

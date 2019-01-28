@@ -49,7 +49,7 @@ describe GameResults do
             expect(@game_result.has_winning_combos?(@board)).to eq(true)
         end
 
-        it "returns false if the board's top row does not have a winning combination" do
+        xit "returns false if the board's top row does not have a winning combination" do
             @board.move("X", 1)
             @board.move("O", 2)
             @board.move("O", 3)
