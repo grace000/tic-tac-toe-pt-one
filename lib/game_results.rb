@@ -8,45 +8,26 @@ class GameResults
     end
 
     def has_winning_combos?(board)
-        winning_combos.any? { |i, j, k|
-            board.moves[i] == board.moves[j] && board.moves[i] == board.moves[k]
-        }
+        has_winning_row?(board)
     end
 
     def draw?(board)
-        !has_winning_combos?(board)
-    end
-
-    def winning_combos
-        [ 
-            winning_rows,
-            winning_cols,
-            winning_diags
-        ].flatten(1)
+        board.full? && !has_winning_combos?(board)
     end
 
     private 
-
-        def winning_rows
-            [
-                [0,1,2],
-                [3,4,5],
-                [6,7,8],
-            ]
-        end
+    def all_cells_equal?(row)
+        return if row.first == nil
         
-        def winning_cols
-            [
-                [0,3,6],
-                [1,4,7],
-                [2,5,8],
-            ]
-        end
+        row.each_cons(2).all? { |x,y| x == y }
+    end
 
-        def winning_diags
-            [
-                [0,4,8],
-                [2,4,6]
-            ]
-        end
+    def has_winning_row?(board)
+        rows = split_board_state(board)
+        rows.any? { |row| return true if all_cells_equal?(row)}
+    end
+
+    def split_board_state(board)
+        board.moves.each_slice(3).to_a
+    end
 end
