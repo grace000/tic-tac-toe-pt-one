@@ -113,6 +113,18 @@ describe GameResults do
             expect(@game_result.has_winning_combos?(@board)).to eq(true)
         end
 
+        it "returns true if the second diagonal has a winning combination" do
+            @board.move("X", 5)
+            @board.move("O", 4)
+            @board.move("X", 1)
+            @board.move("O", 8)
+            @board.move("X", 7)
+            @board.move("O", 3)
+            @board.move("X", 9)
+
+            expect(@game_result.has_winning_combos?(@board)).to eq(true)
+        end
+
         it "returns false if the no columns, rows, or diagonals have a winning combination" do
             @board.move("X", 1)
             @board.move("X", 2)
