@@ -27,16 +27,31 @@ class Game
         end
     end
 
-    def game_over?(board)
+    def game_over?(board, player)
         if @game_result.draw?(board)
-            report_game_result
+            report_game_result(display_draw_msg, player=nil)
             puts @presenter.display_board(board.moves)
             return true
+        elsif @game_result.winner?(board)
+            winner = display_winner_msg(player)
+            report_game_result(winner, player)
+            puts @presenter.display_board(board.moves)
+            return true
+        else 
+            false
         end
     end
 
-    def report_game_result
-        puts "It's a draw! Game over!"
+    def display_draw_msg
+        puts "Draw Game!"
+    end
+
+    def display_winner_msg(player)
+        puts "#{player} is the Winner!"
+    end
+
+    def report_game_result(result, player)
+        result
     end
 
     def play(players, board)
@@ -45,7 +60,7 @@ class Game
             puts @presenter.display_board(board.moves)
             user_coordinate = select_coordinate
             take_turn(board, user_coordinate, player.token)
-            return if game_over?(board)
+            return if game_over?(board, player.token)
         }
         play(players, board)
     end
