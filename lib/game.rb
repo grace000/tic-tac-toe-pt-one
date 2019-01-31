@@ -7,14 +7,16 @@ require_relative './game_results'
 
 class Game
     attr_accessor :board 
-    def initialize
+    def initialize(command_line_input=CommandLineInput.new, prompt=Prompt.new)
         @presenter = BoardPresenter.new
         @game_result = GameResults.new 
+        @command_line_input = command_line_input
+        @prompt = prompt
     end
 
     def select_coordinate
-        puts Prompt::MAKE_COORDINATE_SELECTION
-        CommandLineInput.new.get_input.to_i
+        @prompt.make_coordinate_selection
+        @command_line_input.get_input.to_i
     end
 
     def take_turn(board, position, token)
