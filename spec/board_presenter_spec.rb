@@ -1,4 +1,5 @@
 require "board_presenter"
+require "board"
 
 describe BoardPresenter do
     before(:each) do
@@ -7,15 +8,16 @@ describe BoardPresenter do
 
     describe "#display_board" do
         it "renders empty board if there are no player marks" do
-            board = []
-            expect(@board_presenter.display_board(board)).to eq(
-                <<~HEREDOC
-                        |      |      
-                --------------------------
-                        |      |      
-                --------------------------
-                        |      |     
-                HEREDOC
+            board = Board.new
+            expect(@board_presenter.display_board(board.moves)).to eq(
+            <<~HEREDOC
+            \n
+                1    |   2   |    3
+              --------------------------\n
+                4    |   5   |    6
+              --------------------------\n
+                7    |   8   |    9\n   
+            HEREDOC
             )
         end
     end

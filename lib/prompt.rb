@@ -11,7 +11,7 @@ class Prompt
     MAKE_COORDINATE_SELECTION = "Please select an available spot on the board (1-9)"
 
     def winner_message(player)
-        puts "#{player} is the WINNER! woopiee"
+        puts "#{player} is the WINNER! WOOOPIIEEEE"
     end
 
     def draw_message

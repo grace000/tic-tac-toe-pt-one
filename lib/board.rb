@@ -3,15 +3,11 @@ class Board
     attr_reader :moves
 
     def initialize
-        @moves = Array.new(9)
-    end
-    
-    def empty?
-        moves.all? { |move| move.nil? }
+        @moves = Array.new(9) {|i| i + 1} 
     end
 
     def full?
-        moves.length == 9 && !moves.include?(nil)
+        !moves.any?(1..9)
     end
 
     def move(token, position)
