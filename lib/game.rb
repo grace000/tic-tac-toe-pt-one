@@ -31,8 +31,7 @@ class Game
 
     def game_over?(board, player)
         if @game_result.draw?(board)
-            message = Prompt.new.draw_message
-            report_game_result(display_draw_message(message), player=nil)
+            report_game_result(display_draw_message, player=nil)
             puts @presenter.display_board(board.moves)
             return true
         elsif @game_result.winner?(board)
@@ -45,12 +44,12 @@ class Game
         end
     end
 
-    def display_draw_message(message_displayer)
-        message_displayer
+    def display_draw_message
+        @prompt.draw_message
     end
 
     def display_winner_message(player)
-        Prompt.new.winner_message(player)
+        @prompt.winner_message(player)
     end
 
     def report_game_result(result, player)
