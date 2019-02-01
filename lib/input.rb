@@ -27,7 +27,7 @@ class Input
   end
 
   def get_game_type
-  game_type = input.method.get_input
+  game_type = input_method.get_input
 
     if validator.validate_game_selection(game_type)
       game_type.upcase

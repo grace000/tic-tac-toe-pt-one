@@ -21,23 +21,41 @@ class Setup
     end
 
     def play_with_computer?(input)
-        
         if input == "Y"
-            assign_computer_token
+            computer_and_human_setup
         else
             human_players_setup
         end 
+    end
+
+    def assign_computer_token(human_token)
+        computer_token = "X"
+        while 
+            computer_token == human_token
+            computer_token = ("A".."Z").to_a.sample
+        end
+        player = Player.new(token: computer_token, name: "Computer")
+    end
+
+    def computer_and_human_setup
+        human_player_setup
+        human_token = @players[0].token
+        assign_computer_token(human_token)
+    end
+
+    def human_player_setup
+        @prompt.enter_player_name
+        player_name = @input.get_player_name
+        @prompt.make_token_selection
+        selected_token = @input.get_token
+        assign_player_token(selected_token, player_name)
     end
 
     def human_players_setup
         @prompt.human_players
         2.times { |player_count|
             puts "PLAYER #{player_count + 1}"
-            @prompt.enter_player_name
-            player_name = @input.get_player_name
-            @prompt.make_token_selection
-            selected_token = @input.get_token
-            assign_player_token(selected_token, player_name)
+            human_player_setup
         }
     end
 

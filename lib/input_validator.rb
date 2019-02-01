@@ -9,7 +9,7 @@ class InputValidator
     end
 
     def validate_game_selection(game_type)
-        !game_type.nil? && game_type.match?/^[ynYN]$/) 
+        !game_type.nil? && game_type.match?(/^[ynYN]$/) 
     end
 
     private
