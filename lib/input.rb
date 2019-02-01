@@ -1,19 +1,24 @@
-require_relative './input_validator'
+require_relative 'command_line_input'
+require_relative 'input_validator'
+require_relative 'prompt'
 
 class Input
-    attr_accessor :input_type
-    def initialize(input_type)
-        @input_type = input_type
-    end
+  attr_reader :input_method, :validator
 
-    def get_token
-        input = input_type.get_input 
-        validator = InputValidator.new
-        while !validator.valid_token?(input) do
-            puts "Try again. Please enter valid token."
-            input = input_type.get_input 
-        end
-        input.upcase
+  def initialize(input_method = CommandLineInput.new, validator = InputValidator.new)
+    @input_method = input_method
+    @validator = validator
+  end
+
+  def get_token
+    
+    value = input_method.get_input
+    
+    if validator.validate_token(value)
+        value
+    else
+        puts Prompt::RETRY_MAKE_TOKEN_SELECTION
+        get_token
     end
+  end
 end
-

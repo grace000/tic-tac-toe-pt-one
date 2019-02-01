@@ -1,25 +1,30 @@
 require 'input'
-require 'command_line_input'
+require 'input_validator'
+require 'tic_tac_toe'
+
+class MockInputMethod 
+  def initialize(input)
+    @input = input
+  end
+
+  def get_input
+    @input
+  end
+end
+
+class MockValidator
+  def validate_token(value)
+    !!(value =~ %r{\A[a-zA-Z]{1}\z})
+  end
+end
 
 describe Input do
-    before(:each) do
-        cli = CommandLineInput.new
-        @input = Input.new(cli)
+  describe "#get_token" do
+    it "returns valid token after validation" do
+      test_input = Input.new(MockInputMethod.new("X"), MockValidator.new)
+      
+      expect(test_input.get_token).to eq("X")
     end
+  end
 
-    describe "#get_token" do
-        context "given invalid token input" do
-            it "expects a loop after invalid input" do
-                allow_any_instance_of(CommandLineInput).to receive(:get_input).and_return("3")
-                expect(@input).to receive(:get_token).exactly(1).times
-                @input.get_token
-            end
-
-            it "exits loop after valid token input" do
-                allow_any_instance_of(CommandLineInput).to receive(:get_input).and_return("X")
-                result = @input.get_token
-                expect(result).to eq("X")
-            end
-        end
-    end
 end
