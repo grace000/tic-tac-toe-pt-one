@@ -7,7 +7,7 @@ require_relative './game_results'
 
 class Game
     attr_accessor :board 
-    def initialize(command_line_input=CommandLineInput.new, prompt=Prompt.new)
+    def initialize(command_line_input = CommandLineInput.new, prompt = Prompt.new)
         @presenter = BoardPresenter.new
         @game_result = GameResults.new 
         @command_line_input = command_line_input

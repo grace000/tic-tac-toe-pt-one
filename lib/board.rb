@@ -3,7 +3,7 @@ class Board
     attr_reader :moves
 
     def initialize
-        @moves = Array.new(9) {|i| i + 1} 
+        @moves = (1..9).to_a
     end
 
     def full?
