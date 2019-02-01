@@ -4,7 +4,7 @@ class InputValidator
         requested_move_available?(board_state, requested_move)
     end
 
-    def valid_token?(token)
+    def validate_token(token)
         !token.nil? && token.match?(/^[a-zA-Z]$/) 
     end
 
