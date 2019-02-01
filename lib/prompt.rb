@@ -8,10 +8,12 @@ class Prompt
 
     RETRY_MAKE_TOKEN_SELECTION = "Please try again. Token must be an alphabetical character (A-Z)..."
 
-    MAKE_COORDINATE_SELECTION = "Please select an available spot on the board (1-9)"
+    def make_coordinate_selection 
+        puts "Please select an available spot on the board (1-9)"
+    end
 
     def winner_message(player)
-        puts "#{player} is the WINNER! woopiee"
+        puts "#{player} is the WINNER! WOOOPIIEEEE"
     end
 
     def draw_message
