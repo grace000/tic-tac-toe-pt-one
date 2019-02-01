@@ -21,4 +21,19 @@ class Input
         get_token
     end
   end
+
+  def get_player_name
+    player_name = input_method.get_input
+  end
+
+  def get_game_type
+  game_type = input.method.get_input
+
+    if validator.validate_game_selection(game_type)
+      game_type.upcase
+    else
+      @prompt.retry_make_game_type_selection
+      get_game_type
+    end
+  end
 end

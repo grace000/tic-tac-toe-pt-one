@@ -52,11 +52,11 @@ class Game
 
     def play(players, board)
         players.each { |player| 
-            puts "HELLO PLAYER #{player.token}"
+            puts "HELLO #{player.name}"
             puts @presenter.display_board(board.moves)
             user_coordinate = select_coordinate
             take_turn(board, user_coordinate, player.token)
-            return report_game_result(player.token, board) if game_over?(board)
+            return report_game_result(player.name, board) if game_over?(board)
         }
         play(players, board)
     end
