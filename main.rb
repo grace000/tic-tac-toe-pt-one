@@ -1,4 +1,4 @@
-require './lib/tic_tac_toe'
+require './lib/setup'
 
-ttt = TicTacToe.new
-ttt.start_game_engine
+setup = Setup.new
+setup.start_game_engine

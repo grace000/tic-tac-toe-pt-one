@@ -5,7 +5,7 @@ require_relative './input_validator'
 require_relative './player'
 require_relative './game'
 
-class TicTacToe
+class Setup
     attr_accessor :board 
     def initialize
         @board = Board.new
@@ -21,8 +21,8 @@ class TicTacToe
 
     def start_game_engine
         puts Prompt::WELCOME
-        2.times { |i|
-            puts "PLAYER #{i+1}"
+        2.times { |player_count|
+            puts "PLAYER #{player_count + 1}"
             puts Prompt::MAKE_TOKEN_SELECTION
             selected_token = @input.get_token
             assign_player_token(selected_token)

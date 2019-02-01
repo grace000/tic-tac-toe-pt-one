@@ -3,11 +3,11 @@ class Board
     attr_reader :moves
 
     def initialize
-        @moves = []
+        @moves = Array.new(9)
     end
     
     def empty?
-        moves.length == 0
+        moves.all? { |move| move.nil? }
     end
 
     def full?

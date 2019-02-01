@@ -1,45 +1,38 @@
 class GameResults
-    def winner?(moves)
-        return false if moves.length <= 2 
-        winning_combos.any? { |i, j, k|
-            moves[i] == moves[j] && moves[i] == moves[k]
-        }
+    def winner?(board)
+        if board.moves.length >= 5
+            has_winning_combos?(board)
+        else 
+            false
+        end
+    end
+
+    def has_winning_combos?(board)
+        has_winning_row?(board) || has_winning_column?(board)
     end
 
     def draw?(board)
-        board.full?
-    end
-
-    def winning_combos
-        [ 
-            winning_rows,
-            winning_cols,
-            winning_diags
-        ].flatten(1)
+        board.full? && !has_winning_combos?(board)
     end
 
     private 
+    def all_cells_equal?(row)
+        return false if row.include?(nil)
 
-        def winning_rows
-            @winning_rows = [
-                [0,1,2],
-                [3,4,5],
-                [6,7,8],
-            ]
-        end
-        
-        def winning_cols
-           @winning_cols =  [
-                [0,3,6],
-                [1,4,7],
-                [2,5,8],
-            ]
-        end
+        row.each_cons(2).all? { |cell_one, cell_two| cell_one == cell_two }
+    end
 
-        def winning_diags
-            @winning_diags = [
-                [0,4,8],
-                [2,4,6]
-            ]
-        end
+    def has_winning_row?(board)
+        rows = split_board_state(board)
+        rows.any? { |row| all_cells_equal?(row)}
+    end
+
+    def has_winning_column?(board)
+        columns = split_board_state(board)
+        columns.transpose.any? { |column| all_cells_equal?(column)}
+    end
+
+    def split_board_state(board)
+        board.moves.each_slice(3).to_a
+    end
 end
