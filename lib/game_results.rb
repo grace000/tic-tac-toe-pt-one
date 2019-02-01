@@ -8,14 +8,15 @@ class GameResults
     end
 
     def has_winning_combos?(board)
-        has_winning_row?(board) || has_winning_column?(board)
+        has_winning_row?(board) || has_winning_column?(board) || has_winning_diagonal?(board)
     end
 
     def draw?(board)
         board.full? && !has_winning_combos?(board)
     end
 
-    private 
+    private
+
     def all_cells_equal?(row)
         return false if row.include?(nil)
 
@@ -30,6 +31,11 @@ class GameResults
     def has_winning_column?(board)
         columns = split_board_state(board)
         columns.transpose.any? { |column| all_cells_equal?(column)}
+    end
+
+    def has_winning_diagonal?(board)
+        diagonal = split_board_state(board)
+        diagonal[0][0] == diagonal[1][1] && diagonal[1][1] == diagonal[2][2]
     end
 
     def split_board_state(board)
