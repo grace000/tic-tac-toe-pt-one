@@ -42,6 +42,14 @@ describe Board do
 
             expect(@board.full?).to eq(false)
         end
+
+        it "returns false if the board has any nil spaces" do
+            token = "X"
+            @board.move(token, 5)
+            
+            expect(@board.moves.include?(nil)).to eq(true)
+            expect(@board.full?).to eq(false)
+        end
     end
 end
 

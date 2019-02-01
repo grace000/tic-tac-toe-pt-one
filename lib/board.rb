@@ -11,7 +11,7 @@ class Board
     end
 
     def full?
-        moves.length == 9
+        moves.length == 9 && !moves.include?(nil)
     end
 
     def move(token, position)

@@ -3,7 +3,7 @@ class InputValidator
         requested_move.to_s.match?(/[1-9]/) && board_state[requested_move-1].nil?
     end
 
-    def valid_token?(token)
-        !token.nil? && token.match?(/[a-zA-Z]/) && token.length == 1
+    def validate_token(value)
+        !!(value =~ %r{\A[a-zA-Z]{1}\z})
     end
 end
