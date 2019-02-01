@@ -21,8 +21,8 @@ class Setup
 
     def start_game_engine
         puts Prompt::WELCOME
-        2.times { |i|
-            puts "PLAYER #{i+1}"
+        2.times { |player_count|
+            puts "PLAYER #{player_count + 1}"
             puts Prompt::MAKE_TOKEN_SELECTION
             cli_input = CommandLineInput.new
             selected_token = Input.new(cli_input).get_token

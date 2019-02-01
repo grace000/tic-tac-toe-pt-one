@@ -19,17 +19,17 @@ class GameResults
     def all_cells_equal?(row)
         return false if row.include?(nil)
 
-        row.each_cons(2).all? { |x,y| x == y }
+        row.each_cons(2).all? { |cell_one, cell_two| cell_one == cell_two }
     end
 
     def has_winning_row?(board)
         rows = split_board_state(board)
-        rows.any? { |row| return true if all_cells_equal?(row)}
+        rows.any? { |row| all_cells_equal?(row)}
     end
 
     def has_winning_column?(board)
         columns = split_board_state(board)
-        columns.transpose.any? { |column| return true if all_cells_equal?(column)}
+        columns.transpose.any? { |column| all_cells_equal?(column)}
     end
 
     def split_board_state(board)
