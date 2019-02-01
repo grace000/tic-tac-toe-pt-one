@@ -1,5 +1,5 @@
 class CommandLineInput
     def get_input
-        gets.chomp
+        $stdin.gets.chomp
     end
 end

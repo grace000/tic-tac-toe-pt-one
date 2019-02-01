@@ -11,8 +11,9 @@ class Input
   end
 
   def get_token
+    
     value = input_method.get_input
-
+    
     if validator.validate_token(value)
         value
     else
