@@ -6,12 +6,24 @@ A classic tic tac toe game involves two players and a board with nine spaces. Ea
 
 ## Installing
 
+To get this game up and running in your command line, clone this repo and install dependencies by running the following in your terminal:
+
 ```
 bundle install
 ```
 
+## Usage
+
+After installing the software and cloning the repo, you're ready to play the game. At the root folder, run:
+
+```
+ruby main.rb
+```
+You'll see a welcome note, prompting you to select a token and spaces as you play the game. Use the keyboard to make selections.
 
 ## Running the tests
+
+Take a look in the spec folder for the tests. Feel free to add tests and run them from the root directory using the folliwing in the terminal:
 
 ```
 bundle exec rspec spec
