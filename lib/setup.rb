@@ -11,6 +11,7 @@ class Setup
         @board = Board.new
         @players = []
         @input = Input.new
+        @prompt = Prompt.new
     end
 
     def assign_player_token(input)
@@ -20,10 +21,10 @@ class Setup
     end
 
     def start_game_engine
-        puts Prompt::WELCOME
+        @prompt.welcome
         2.times { |player_count|
             puts "PLAYER #{player_count + 1}"
-            puts Prompt::MAKE_TOKEN_SELECTION
+            @prompt.make_token_selection
             selected_token = @input.get_token
             assign_player_token(selected_token)
         }

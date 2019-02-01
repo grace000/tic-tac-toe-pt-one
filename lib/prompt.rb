@@ -1,12 +1,17 @@
 class Prompt
-    WELCOME = "Welcome to Tic Tac Toe, the game that never gets dull!"
+    def welcome
+        puts "Welcome to Tic Tac Toe, the game that never gets dull!"
+    end
 
-    MAKE_TOKEN_SELECTION = 
-    "    Please type a single character that you would like to 
-    use throughout the game as your token. 
-    Must be an alphabetical character (A-Z)..."
-
-    RETRY_MAKE_TOKEN_SELECTION = "Please try again. Token must be an alphabetical character (A-Z)..."
+    def make_token_selection
+        puts "    Please type a single character that you would like to 
+        use throughout the game as your token. 
+        Must be an alphabetical character (A-Z)..."
+    end 
+    
+    def retry_make_token_selection
+        puts "Please try again. Token must be an alphabetical character (A-Z)..."
+    end
 
     def make_coordinate_selection 
         puts "Please select an available spot on the board (1-9)"
