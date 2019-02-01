@@ -1,6 +1,5 @@
 require 'input'
 require 'input_validator'
-require 'tic_tac_toe'
 
 class MockInputMethod 
   def initialize(input)
