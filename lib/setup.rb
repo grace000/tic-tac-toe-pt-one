@@ -14,7 +14,7 @@ class Setup
         @prompt = Prompt.new
     end
 
-    def assign_player_token(token_input, player_name_input)
+    def assign_human_player_token(token_input, player_name_input)
         puts "#{player_name_input}, thanks for selecting #{token_input}."
         player = Player.new(token: token_input, name: player_name_input)
         @players << player
@@ -49,7 +49,7 @@ class Setup
         player_name = @input.get_player_name
         @prompt.make_token_selection
         selected_token = @input.get_token
-        assign_player_token(selected_token, player_name)
+        assign_human_player_token(selected_token, player_name)
     end
 
     def human_players_setup
