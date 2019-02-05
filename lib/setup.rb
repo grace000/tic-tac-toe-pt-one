@@ -6,7 +6,7 @@ require_relative './player'
 require_relative './game'
 
 class Setup
-    attr_accessor :board 
+    attr_accessor :board, :players
     def initialize
         @board = Board.new
         @players = []
