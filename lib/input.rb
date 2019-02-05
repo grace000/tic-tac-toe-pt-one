@@ -26,14 +26,14 @@ class Input
     player_name = input_method.get_input
   end
 
-  def get_game_type
-  game_type = input_method.get_input
+  def get_opponents
+  opponent_input = input_method.get_input
 
-    if validator.validate_game_selection(game_type)
-      game_type.upcase
+    if validator.validate_opponent_selection(opponent_input)
+      opponent_input.upcase
     else
-      @prompt.retry_make_game_type_selection
-      get_game_type
+      @prompt.retry_make_opponent_selection
+      get_opponents
     end
   end
 end

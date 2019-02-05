@@ -35,6 +35,7 @@ class Setup
             computer_token = ("A".."Z").to_a.sample
         end
         player = Player.new(token: computer_token, name: "Computer")
+        @players << player
     end
 
     def computer_and_human_setup
@@ -59,15 +60,11 @@ class Setup
         }
     end
 
-    def continue_game?(input)
-        return if input == "N"
-    end
-
     def start_game_engine
         @prompt.welcome
-        @prompt.game_type
-        game_type = @input.get_game_type
-        play_with_computer?(game_type)
+        @prompt.make_opponent_selection
+        opponent_selection = @input.get_opponents
+        play_with_computer?(opponent_selection)
         Game.new.play(@players, @board)
     end
 end

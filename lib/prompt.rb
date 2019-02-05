@@ -1,13 +1,13 @@
 class Prompt
     def welcome
-        puts "Welcome to Tic Tac Toe, the game that never gets dull!"
+        puts "\nWelcome to Tic Tac Toe, the game that never gets dull!"
     end
 
-    def game_type
-        puts "Would you like to play with the computer?"
+    def make_opponent_selection
+        puts "\nWould you like to play with the computer? Type Y for yes or N for no."
     end
-
-    def rretry_make_game_type_selection
+ 
+    def retry_make_opponent_selection
         puts "Please try again. Just type Y or N. Y is yes. N is no"
     end
 
