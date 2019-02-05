@@ -4,11 +4,12 @@
 
 A classic tic tac toe game involves two players and a board with nine spaces. Each player will take turns filling a space with their token. At the start of the game, each player selects a token of their choice which will represent their selected board spaces. In order to win a game, a player has to gain three board spaces in a row. The row can be horizonal, vertical, or diagonal. If the board fills up before a player gains three spaces, the game will result in a draw. 
 
-## Sofware and Installation 
+## Software and Installation 
 
 To get started, you'll need the following software on your machine. Follow the links for installation instructions. 
-    - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-    - [Ruby](https://www.ruby-lang.org/en/documentation/installation/)
+
+- [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- [Ruby](https://www.ruby-lang.org/en/documentation/installation/)
 
 ## Installing
 
