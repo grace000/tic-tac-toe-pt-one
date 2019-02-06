@@ -8,11 +8,15 @@ class Prompt
     end
  
     def retry_make_opponent_selection
-        puts "Please try again. Just type Y or N. Y is yes. N is no"
+        puts "Please try again. Just type Y or N. Y for yes. N for no."
     end
 
     def human_players
-        puts "Cool, let's play with two human players."
+        puts "Cool, a game with two human players. Let's select some tokens." 
+    end
+
+    def computer_token(token)
+        puts "\nHuman vs Computer Game selected. The computer will play with #{token}!"
     end
 
     def enter_player_name

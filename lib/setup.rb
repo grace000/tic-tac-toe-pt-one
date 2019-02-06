@@ -36,12 +36,14 @@ class Setup
         end
         player = Player.new(token: computer_token, name: "Computer")
         @players << player
+        computer_token
     end
 
     def computer_and_human_setup
         human_player_setup
         human_token = @players[0].token
-        assign_computer_token(human_token)
+        comp_token = assign_computer_token(human_token)
+        @prompt.computer_token(comp_token)
     end
 
     def human_player_setup
