@@ -1,5 +1,5 @@
 require_relative './board_presenter'
-require_relative './command_line_input'
+require_relative './input'
 require_relative './input_validator'
 require_relative './prompt'
 require_relative './board'
@@ -7,25 +7,19 @@ require_relative './game_results'
 
 class Game
     attr_accessor :board 
-    def initialize(command_line_input = CommandLineInput.new, prompt = Prompt.new)
+    def initialize
         @presenter = BoardPresenter.new
         @game_result = GameResults.new 
-        @command_line_input = command_line_input
-        @prompt = prompt
+        @prompt = Prompt.new
+
     end
 
-    def select_coordinate
-        @prompt.make_coordinate_selection
-        @command_line_input.get_input.to_i
-    end
-
-    def take_turn(board, position, token)
-        input_validator = InputValidator.new
-        if input_validator.valid_coordinate?(board.moves, position)
-            board.move(token, position)
+    def take_turn(board, position, player)
+        if board.space_available?(position)
+            board.move(player.token, position)
         else
-            user_coordinate = select_coordinate
-            take_turn(board, user_coordinate, token)
+            user_coordinate = player.select_coordinate
+            take_turn(board, user_coordinate, player)
         end
     end
 
@@ -52,10 +46,10 @@ class Game
 
     def play(players, board)
         players.each { |player| 
-            puts "HELLO #{player.name}"
+            puts "Alright, #{player.name}, please take your turn."
             puts @presenter.display_board(board.moves)
-            user_coordinate = select_coordinate
-            take_turn(board, user_coordinate, player.token)
+            user_coordinate = player.select_coordinate
+            take_turn(board, user_coordinate, player)
             return report_game_result(player.name, board) if game_over?(board)
         }
         play(players, board)

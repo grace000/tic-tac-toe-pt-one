@@ -36,4 +36,15 @@ class Input
       get_opponents
     end
   end
+
+  def get_coordinate
+    requested_move = input_method.get_input.to_i
+
+    if validator.valid_coordinate?(requested_move)
+        requested_move
+    else
+        @prompt.make_coordinate_selection
+        get_coordinate
+    end
+  end
 end
