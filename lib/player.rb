@@ -6,7 +6,7 @@ class Player
         @player = args[:player]
     end
 
-    def selected_coordinate
+    def select_coordinate
         player.select_coordinate
     end
 end
