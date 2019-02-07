@@ -35,7 +35,8 @@ class GameResults
 
     def has_winning_diagonal?(board)
         diagonal = split_board_state(board)
-        diagonal[0][0] == diagonal[1][1] && diagonal[1][1] == diagonal[2][2]
+        diagonal[0][0] == diagonal[1][1] && diagonal[1][1] == diagonal[2][2] ||
+        diagonal[0][2] == diagonal[1][1] && diagonal[1][1] == diagonal[2][0]
     end
 
     def split_board_state(board)

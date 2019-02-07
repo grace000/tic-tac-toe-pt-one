@@ -8,6 +8,10 @@ class InputValidator
         !token.nil? && token.match?(/^[a-zA-Z]$/) 
     end
 
+    def validate_opponent_selection(opponent_input)
+        !opponent_input.nil? && opponent_input.match?(/^[ynYN]$/) 
+    end
+
     private
 
     def requested_move_is_integer?(requested_move)
