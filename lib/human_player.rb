@@ -4,11 +4,11 @@ require_relative './input'
 class HumanPlayer 
     attr_accessor :token, :name
     
-    def initialize(args, prompt = Prompt.new)
+    def initialize(args)
         @token = args[:token]
         @name = args[:name]
         @input = Input.new
-        @prompt = prompt
+        @prompt = Prompt.new
     end
 
     def select_coordinate
