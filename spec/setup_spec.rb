@@ -22,7 +22,7 @@ describe Setup do
             
             human_token = "P"
             human_name = "Human"
-            human_player = Player.new(token:human_token, name:human_name)
+            human_player = HumanPlayer.new(token:human_token, name:human_name)
             @setup.players << human_player
             @setup.assign_computer_token(human_token)
             
@@ -33,7 +33,7 @@ describe Setup do
             
             human_token = "X"
             human_name = "Human"
-            human_player = Player.new(token:human_token, name:human_name)
+            human_player = HumanPlayer.new(token:human_token, name:human_name)
             @setup.players << human_player
             @setup.assign_computer_token(human_token)
             

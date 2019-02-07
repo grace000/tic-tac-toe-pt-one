@@ -2,8 +2,9 @@ require_relative './input'
 require_relative './prompt'
 require_relative './board'
 require_relative './input_validator'
-require_relative './player'
+require_relative './human_player'
 require_relative './game'
+require_relative './computer_player'
 
 class Setup
     attr_accessor :board, :players
@@ -16,7 +17,7 @@ class Setup
 
     def assign_human_player_token(token_input, player_name_input)
         puts "#{player_name_input}, thanks for selecting #{token_input}."
-        player = Player.new(token: token_input, name: player_name_input)
+        player = HumanPlayer.new(token: token_input, name: player_name_input)
         @players << player
     end
 
@@ -34,8 +35,8 @@ class Setup
             computer_token == human_token
             computer_token = ("A".."Z").to_a.sample
         end
-        player = Player.new(token: computer_token, name: "Computer")
-        @players << player
+        computer_player = ComputerPlayer.new(token: computer_token, setting: "Easy")
+        @players << computer_player
         computer_token
     end
 

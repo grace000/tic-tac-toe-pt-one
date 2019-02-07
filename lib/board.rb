@@ -14,4 +14,8 @@ class Board
         position -= 1
         @moves[position] = token
     end
+
+    def space_available?(position)
+        !@moves[position-1].is_a?(String)
+    end
 end
