@@ -1,4 +1,6 @@
 require './lib/setup'
+require './lib/game'
 
 setup = Setup.new
-setup.start_game_engine
+game = Game.new
+setup.start_game_engine(game)

@@ -4,7 +4,8 @@ require_relative './board'
 require_relative './input_validator'
 require_relative './human_player'
 require_relative './game'
-require_relative './computer_player'
+require_relative './easy_computer_player'
+require_relative './hard_computer_player'
 
 class Setup
     attr_accessor :board, :players
@@ -13,38 +14,28 @@ class Setup
         @players = []
         @input = Input.new
         @prompt = Prompt.new
+        @number_of_players = 2
     end
 
-    def assign_human_player_token(token_input, player_name_input)
-        puts "#{player_name_input}, thanks for selecting #{token_input}."
-        player = HumanPlayer.new(token: token_input, name: player_name_input)
-        @players << player
+    def start_game_engine(game)
+        @prompt.welcome
+        @number_of_players.times { @players << get_player_selection }
+        game.play(@players, @board)
     end
 
-    def play_with_computer?(input)
-        if input == "Y"
-            computer_and_human_setup
-        else
-            human_players_setup
-        end 
+    private 
+
+    def assign_human_player_info(token_input, player_name_input)
+        @prompt.confirm_player_info(player_name_input, token_input)
+        HumanPlayer.new(token: token_input, name: player_name_input, board: @board)
     end
 
-    def assign_computer_token(human_token)
-        computer_token = "X"
-        while 
-            computer_token == human_token
-            computer_token = ("A".."Z").to_a.sample
-        end
-        computer_player = ComputerPlayer.new(token: computer_token, setting: "Easy")
-        @players << computer_player
-        computer_token
+    def assign_easy_computer_player
+        EasyComputerPlayer.new(token: "X", board: @board)
     end
 
-    def computer_and_human_setup
-        human_player_setup
-        human_token = @players[0].token
-        comp_token = assign_computer_token(human_token)
-        @prompt.computer_token(comp_token)
+    def assign_hard_computer_player
+        HardComputerPlayer.new(token: "X", board: @board)
     end
 
     def human_player_setup
@@ -52,23 +43,21 @@ class Setup
         player_name = @input.get_player_name
         @prompt.make_token_selection
         selected_token = @input.get_token
-        assign_human_player_token(selected_token, player_name)
+        assign_human_player_info(selected_token, player_name)
     end
 
-    def human_players_setup
-        @prompt.human_players
-        2.times { |player_count|
-            puts "PLAYER #{player_count + 1}"
+    def get_player_selection
+        @prompt.player_selection(@number_of_players)
+
+        player_type = @input.get_players
+        
+        if player_type == "H"
             human_player_setup
-        }
-    end
-
-    def start_game_engine
-        @prompt.welcome
-        @prompt.make_opponent_selection
-        opponent_selection = @input.get_opponents
-        play_with_computer?(opponent_selection)
-        Game.new.play(@players, @board)
+        elsif player_type == "E"
+            assign_easy_computer_player
+        else
+            assign_hard_computer_player
+        end
     end
 end
 

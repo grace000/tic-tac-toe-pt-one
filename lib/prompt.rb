@@ -1,22 +1,22 @@
 class Prompt
     def welcome
-        puts "\nWelcome to Tic Tac Toe, the game that never gets dull!"
+        puts "\nWelcome to Tic Tac Toe, the game that never gets dull! 
+        Let's start by selecting two players..."
     end
 
-    def make_opponent_selection
-        puts "\nWould you like to play with the computer? Type Y for yes or N for no."
+    def player_selection(player_number)
+        puts "For player #{player_number}, type the letter that corresponds to the player you want:"
+        puts " Human Player (H)"
+        puts " Easy Computer (E)"
+        puts " Difficult Computer (D)"
+    end
+
+    def confirm_player_info(name, token)
+        puts "#{name}, thanks for selecting #{token}."
     end
  
     def retry_make_opponent_selection
         puts "Please try again. Just type Y or N. Y for yes. N for no."
-    end
-
-    def human_players
-        puts "Cool, a game with two human players. Let's select some tokens." 
-    end
-
-    def computer_token(token)
-        puts "\nHuman vs Computer Game selected. The computer will play with #{token}!"
     end
 
     def enter_player_name

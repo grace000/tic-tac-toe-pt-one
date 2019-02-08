@@ -1,11 +1,10 @@
 
-class ComputerPlayer
-    attr_accessor :token, :setting, :name
+class EasyComputerPlayer
+    attr_accessor :token, :name
     
     def initialize(args)
         @token = args[:token]
         @name = "Computer"
-        @setting = args[:setting]
     end
 
     def select_coordinate
