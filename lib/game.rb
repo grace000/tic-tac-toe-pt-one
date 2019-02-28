@@ -44,7 +44,6 @@ class Game
             puts "Alright, #{player.name}, please take your turn."
             puts @presenter.display_board(board.moves)
             user_coordinate = player.select_coordinate(board, players)
-            print player
             take_turn(board, user_coordinate, player)
             return report_game_result(player.name, board) if game_over?(board)
         }

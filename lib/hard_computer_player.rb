@@ -5,7 +5,7 @@ class HardComputerPlayer
     
     def initialize(args)
         @token = args[:token]
-        @name = "Computer"
+        @name = "Hard Computer"
         @game_results = GameResults.new 
     end
 

@@ -31,11 +31,11 @@ class Setup
     end
 
     def assign_easy_computer_player
-        EasyComputerPlayer.new(token: "X", board: @board)
+        EasyComputerPlayer.new(token: "E", board: @board)
     end
 
     def assign_hard_computer_player
-        HardComputerPlayer.new(token: "X", board: @board)
+        HardComputerPlayer.new(token: "Z", board: @board)
     end
 
     def human_player_setup
