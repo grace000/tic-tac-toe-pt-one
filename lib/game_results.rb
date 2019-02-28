@@ -1,9 +1,11 @@
 class GameResults
     def winner?(board)
-        if board.moves.length >= 5
-            has_winning_combos?(board)
-        else 
-            false
+        has_winning_combos?(board)
+    end
+
+    def winning_token(board)
+        if winner?(board)
+            board.moves.each_with_object(Hash.new(0)) { |v, h| h[v] += 1 }.max_by(&:last)[0]
         end
     end
 

@@ -4,10 +4,15 @@ class EasyComputerPlayer
     
     def initialize(args)
         @token = args[:token]
-        @name = "Computer"
+        @name = "Easy Computer"
     end
 
-    def select_coordinate
-        rand(1..9)
+    def select_coordinate(board, players = nil)
+        random_coordinate = rand(1..9)
+        if board.space_available?(random_coordinate)
+            random_coordinate
+        else
+            select_coordinate(board)
+        end
     end
 end

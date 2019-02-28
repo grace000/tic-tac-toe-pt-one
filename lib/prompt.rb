@@ -16,7 +16,8 @@ class Prompt
     end
  
     def retry_make_opponent_selection
-        puts "Please try again. Just type Y or N. Y for yes. N for no."
+        puts "Please try again. Just type H for human player, E for easy computer
+        or D for difficult computer."
     end
 
     def enter_player_name
