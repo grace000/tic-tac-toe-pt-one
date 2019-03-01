@@ -18,49 +18,51 @@ class HardComputerPlayer
     def get_best_computer_move(board, players)
         best_move_score = -1000
         best_move = nil
-        board.empty_spaces.each do |current_move|
+
+        for current_move in board.empty_spaces do 
             board.update(self.token, current_move)
             current_score = get_best_move_score(board, players, 0, false)
+ 
             if current_score > best_move_score 
                 best_move_score = current_score
                 best_move = current_move
             end
-            board.moves[current_move-1] = current_move
+            board.moves[current_move - 1] = current_move
         end
         best_move
     end
 
     def get_best_move_score(board, players, depth, is_maximizing_player)
-        score = evaluate_board(board)
-
-        return score if score == 10
-        return score if score == -10
-        return score if score == 0
+        score = evaluate_board(board, depth)
+        
+        if @game_results.winner?(board) || @game_results.draw?(board)
+            return score
+        end
 
         if is_maximizing_player
             best_score = -1000
 
-            board.empty_spaces do |move|
+            for move in board.empty_spaces do
                 board.update(self.token, move)
-                best_score = [best_score, get_best_move_score(board, players, depth+1, !is_maximizing_player)].max
+                best_score = [best_score, get_best_move_score(board, players, depth + 1, false)].max
                 board.moves[move-1] = move
             end
             best_score
         else
             best_score = 1000
 
-            board.empty_spaces do |move|
-                board.update(players[0].token,move)
-                best_score = [best_score, get_best_move_score(board, players, depth+1, !is_maximizing_player)].min
+            for move in board.empty_spaces do
+                board.update(players[0].token, move)
+                best_score = [best_score, get_best_move_score(board, players, depth + 1, true)].min
                 board.moves[move-1] = move
-            end
+            end 
             best_score
         end
     end
 
-    def evaluate_board(board)
-        return 10 if @game_results.winning_token(board) == self.token
+    def evaluate_board(board, depth)
+        return 100 - depth if @game_results.winning_token(board) == self.token
+        return -100 + depth if @game_results.winning_token(board) != self.token
         return 0 if @game_results.draw?(board)
-        return -10 if @game_results.winning_token(board) != self.token
     end
 end
