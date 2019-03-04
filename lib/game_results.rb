@@ -5,11 +5,8 @@ class GameResults
 
     def winning_token(board)
         if winner?(board)
-            # array = split_board_state
-            # board.moves.each_with_object(Hash.new(0)) { |v, h| h[v] += 1 }.max_by(&:last)[0]
             freq = board.moves.each_with_object(Hash.new(0)) { |v, h| h[v] += 1 }
             board.moves.max_by { |token| freq[token]}
-            # print board.moves.uniq.map { |value| board.moves.count(value) }.max
         end
     end
 

@@ -10,7 +10,7 @@ class HardComputerPlayer
     end
 
     def select_coordinate(board, players)
-        # return 5 if board.space_available?(5)
+        return 5 if board.space_available?(5)
         get_best_computer_move(board, players)
     end
 
