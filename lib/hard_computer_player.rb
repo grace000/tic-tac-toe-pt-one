@@ -10,6 +10,7 @@ class HardComputerPlayer
     end
 
     def select_coordinate(board, players)
+        # return 5 if board.space_available?(5)
         get_best_computer_move(board, players)
     end
 
@@ -19,7 +20,7 @@ class HardComputerPlayer
         best_move_score = -1000
         best_move = nil
 
-        for current_move in board.empty_spaces do 
+        board.empty_spaces.each do |current_move|
             board.update(self.token, current_move)
             current_score = get_best_move_score(board, players, 0, false)
  
@@ -34,7 +35,7 @@ class HardComputerPlayer
 
     def get_best_move_score(board, players, depth, is_maximizing_player)
         score = evaluate_board(board, depth)
-        
+
         if @game_results.winner?(board) || @game_results.draw?(board)
             return score
         end
@@ -42,7 +43,7 @@ class HardComputerPlayer
         if is_maximizing_player
             best_score = -1000
 
-            for move in board.empty_spaces do
+            board.empty_spaces.each do |move|
                 board.update(self.token, move)
                 best_score = [best_score, get_best_move_score(board, players, depth + 1, false)].max
                 board.moves[move-1] = move
@@ -51,7 +52,7 @@ class HardComputerPlayer
         else
             best_score = 1000
 
-            for move in board.empty_spaces do
+            board.empty_spaces.each do |move|
                 board.update(players[0].token, move)
                 best_score = [best_score, get_best_move_score(board, players, depth + 1, true)].min
                 board.moves[move-1] = move

@@ -69,5 +69,33 @@ describe HardComputerPlayer do
             computer_coordinate = @hard_computer_player.select_coordinate(@board, @players)
             expect(computer_coordinate).to eq(9)
         end
+
+        it "provides a coordinate to win the game vertically at the first opportunity" do
+            self.setup_players
+            
+            @board.update("O", 5)
+            @board.update("X", 1)
+            @board.update("O", 2)
+            @board.update("X", 8)
+            @board.update("O", 3)
+            @board.update("X", 7)
+            @board.update("O", 6)
+
+            computer_coordinate = @hard_computer_player.select_coordinate(@board, @players)
+            expect(computer_coordinate).to eq(4)
+        end
+
+        it "provides a coordinate to win the game horizontally at the first opportunity" do
+            self.setup_players
+            
+            @board.update("O", 5)
+            @board.update("X", 1)
+            @board.update("O", 8)
+            @board.update("X", 2)
+            @board.update("O", 7)
+
+            computer_coordinate = @hard_computer_player.select_coordinate(@board, @players)
+            expect(computer_coordinate).to eq(3)
+        end
     end
 end
