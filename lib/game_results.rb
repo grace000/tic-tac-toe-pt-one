@@ -1,9 +1,12 @@
 class GameResults
     def winner?(board)
-        if board.moves.length >= 5
-            has_winning_combos?(board)
-        else 
-            false
+        has_winning_combos?(board)
+    end
+
+    def winning_token(board)
+        if winner?(board)
+            freq = board.moves.each_with_object(Hash.new(0)) { |v, h| h[v] += 1 }
+            board.moves.max_by { |token| freq[token]}
         end
     end
 

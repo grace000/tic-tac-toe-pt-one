@@ -7,8 +7,8 @@ class InputValidator
         !token.nil? && token.match?(/^[a-zA-Z]$/) 
     end
 
-    def validate_opponent_selection(opponent_input)
-        !opponent_input.nil? && opponent_input.match?(/^[ynYN]$/) 
+    def validate_player_selection(opponent_input)
+        !opponent_input.nil? && opponent_input.match?(/^[edhEDH]$/) 
     end
 
     private
